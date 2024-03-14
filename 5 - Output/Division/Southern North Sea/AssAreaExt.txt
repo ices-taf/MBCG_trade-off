@@ -1,0 +1,3 @@
+"Ecoregion"	"division"	"depthclass"	"area_sqkm"
+"Greater North Sea"	"All"	"1. 0 - 200m"	143001.66
+"Greater North Sea"	"Southern North Sea"	"1. 0 - 200m"	143001.66

@@ -1,0 +1,5 @@
+"Ecoregion"	"division"	"depthclass"	"area_sqkm"
+"Baltic Sea"	"All"	"1. 0 - 200m"	57006.09
+"Baltic Sea"	"All"	"Other"	683.84
+"Baltic Sea"	"ArkBor_BS"	"1. 0 - 200m"	57006.09
+"Baltic Sea"	"ArkBor_BS"	"Other"	683.84

@@ -1,0 +1,10 @@
+"Indicators","0 to 200 m","200 to 400 m","400 m to 800 m"
+"Average fishing intensity (I-1)",2.22,3.28,1.82
+"Proportion of fished c-squares (I-2)",0.99,0.97,0.8
+"Proportion of area fished (I-3)",0.81,0.89,0.48
+"Smallest  prop. of c-squares with 90% of total fishing intensity (I-4)",0.59,0.65,0.33
+"Proportion of persistently unfished c-squares (I-5)",0.01,0.03,0.2
+"Average PD impact (I-6a)",0.09,0.19,0.19
+"Average PD-sens impact (I-6b)",0.13,0.23,0.22
+"Proportion of c-squares with PD impact < 0.2 (I-7a)",0.93,0.68,0.69
+"Proportion of c-squares with PD-sens impact < 0.2 (I-7b)",0.81,0.55,0.66

@@ -1,0 +1,13 @@
+"Ecoregion"	"division"	"depthclass"	"area_sqkm"
+"Baltic Sea"	"All"	"1. 0 - 200m"	349024.98
+"Baltic Sea"	"All"	"2. 200 - 400m"	1872.28
+"Baltic Sea"	"All"	"3. 400 - 800m"	32.33
+"Baltic Sea"	"ArkBor_BS"	"1. 0 - 200m"	57006.09
+"Baltic Sea"	"Bothnian_BS"	"1. 0 - 200m"	109275.9
+"Baltic Sea"	"Bothnian_BS"	"2. 200 - 400m"	445.99
+"Baltic Sea"	"GulfF_BS"	"1. 0 - 200m"	16419.09
+"Baltic Sea"	"GulfR_BS"	"1. 0 - 200m"	17966.37
+"Baltic Sea"	"Proper_BS"	"1. 0 - 200m"	130352.01
+"Baltic Sea"	"Proper_BS"	"2. 200 - 400m"	1426.3
+"Baltic Sea"	"Proper_BS"	"3. 400 - 800m"	32.33
+"Baltic Sea"	"Western_BS"	"1. 0 - 200m"	18005.52

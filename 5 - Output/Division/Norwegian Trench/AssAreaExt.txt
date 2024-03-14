@@ -1,0 +1,7 @@
+"Ecoregion"	"division"	"depthclass"	"area_sqkm"
+"Greater North Sea"	"All"	"1. 0 - 200m"	7031.23
+"Greater North Sea"	"All"	"2. 200 - 400m"	1848.02
+"Greater North Sea"	"All"	"3. 400 - 800m"	604.42
+"Greater North Sea"	"Norwegian Trench"	"1. 0 - 200m"	7031.23
+"Greater North Sea"	"Norwegian Trench"	"2. 200 - 400m"	1848.02
+"Greater North Sea"	"Norwegian Trench"	"3. 400 - 800m"	604.42

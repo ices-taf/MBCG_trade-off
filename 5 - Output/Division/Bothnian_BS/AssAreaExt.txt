@@ -1,0 +1,7 @@
+"Ecoregion"	"division"	"depthclass"	"area_sqkm"
+"Baltic Sea"	"All"	"1. 0 - 200m"	109275.9
+"Baltic Sea"	"All"	"2. 200 - 400m"	445.99
+"Baltic Sea"	"All"	"Other"	1159.42
+"Baltic Sea"	"Bothnian_BS"	"1. 0 - 200m"	109275.9
+"Baltic Sea"	"Bothnian_BS"	"2. 200 - 400m"	445.99
+"Baltic Sea"	"Bothnian_BS"	"Other"	1159.42

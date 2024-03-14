@@ -1,0 +1,20 @@
+"Ecoregion"	"division"	"depthclass"	"area_sqkm"
+"Bay of Biscay and the Iberian Coast"	"All"	"1. 0 - 200m"	130884.57
+"Bay of Biscay and the Iberian Coast"	"All"	"2. 200 - 400m"	18721.22
+"Bay of Biscay and the Iberian Coast"	"All"	"3. 400 - 800m"	24912.9
+"Bay of Biscay and the Iberian Coast"	"All"	"4. >= 800m"	579259.26
+"Bay of Biscay and the Iberian Coast"	"Gulf of Biscay"	"1. 0 - 200m"	77541.55
+"Bay of Biscay and the Iberian Coast"	"Gulf of Biscay"	"2. 200 - 400m"	5928.08
+"Bay of Biscay and the Iberian Coast"	"Gulf of Biscay"	"3. 400 - 800m"	598.67
+"Bay of Biscay and the Iberian Coast"	"Gulf of Cadiz"	"1. 0 - 200m"	6999.53
+"Bay of Biscay and the Iberian Coast"	"Gulf of Cadiz"	"2. 200 - 400m"	1267.79
+"Bay of Biscay and the Iberian Coast"	"Gulf of Cadiz"	"3. 400 - 800m"	3163.08
+"Bay of Biscay and the Iberian Coast"	"Gulf of Cadiz"	"4. >= 800m"	773.84
+"Bay of Biscay and the Iberian Coast"	"North-Iberian Atlantic"	"1. 0 - 200m"	23712.86
+"Bay of Biscay and the Iberian Coast"	"North-Iberian Atlantic"	"2. 200 - 400m"	6860.79
+"Bay of Biscay and the Iberian Coast"	"North-Iberian Atlantic"	"3. 400 - 800m"	11056.62
+"Bay of Biscay and the Iberian Coast"	"North-Iberian Atlantic"	"4. >= 800m"	347196.53
+"Bay of Biscay and the Iberian Coast"	"South-Iberian Atlantic"	"1. 0 - 200m"	22630.63
+"Bay of Biscay and the Iberian Coast"	"South-Iberian Atlantic"	"2. 200 - 400m"	4664.56
+"Bay of Biscay and the Iberian Coast"	"South-Iberian Atlantic"	"3. 400 - 800m"	10094.53
+"Bay of Biscay and the Iberian Coast"	"South-Iberian Atlantic"	"4. >= 800m"	231288.89

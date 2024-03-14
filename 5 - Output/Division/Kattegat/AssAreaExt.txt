@@ -1,0 +1,3 @@
+"Ecoregion"	"division"	"depthclass"	"area_sqkm"
+"Greater North Sea"	"All"	"1. 0 - 200m"	23197.25
+"Greater North Sea"	"Kattegat"	"1. 0 - 200m"	23197.25

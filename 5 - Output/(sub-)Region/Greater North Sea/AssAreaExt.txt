@@ -1,0 +1,11 @@
+"Ecoregion"	"division"	"depthclass"	"area_sqkm"
+"Greater North Sea"	"All"	"1. 0 - 200m"	218309.76
+"Greater North Sea"	"All"	"2. 200 - 400m"	1848.02
+"Greater North Sea"	"All"	"3. 400 - 800m"	604.42
+"Greater North Sea"	"Central North Sea"	"1. 0 - 200m"	18990.94
+"Greater North Sea"	"Channel"	"1. 0 - 200m"	26088.69
+"Greater North Sea"	"Kattegat"	"1. 0 - 200m"	23197.25
+"Greater North Sea"	"Norwegian Trench"	"1. 0 - 200m"	7031.23
+"Greater North Sea"	"Norwegian Trench"	"2. 200 - 400m"	1848.02
+"Greater North Sea"	"Norwegian Trench"	"3. 400 - 800m"	604.42
+"Greater North Sea"	"Southern North Sea"	"1. 0 - 200m"	143001.66

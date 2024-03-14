@@ -1,0 +1,9 @@
+"Ecoregion"	"division"	"depthclass"	"area_sqkm"
+"Celtic Seas"	"All"	"1. 0 - 200m"	120239.92
+"Celtic Seas"	"All"	"2. 200 - 400m"	11580.21
+"Celtic Seas"	"All"	"3. 400 - 800m"	18409.31
+"Celtic Seas"	"All"	"4. >= 800m"	96756.9
+"Celtic Seas"	"Southern Celtic Sea"	"1. 0 - 200m"	120239.92
+"Celtic Seas"	"Southern Celtic Sea"	"2. 200 - 400m"	11580.21
+"Celtic Seas"	"Southern Celtic Sea"	"3. 400 - 800m"	18409.31
+"Celtic Seas"	"Southern Celtic Sea"	"4. >= 800m"	96756.9
