@@ -1,0 +1,3 @@
+Weight of landings data for OT_DMF is unrealistically high and likely based on erroneous inputs (red area in Figure 1 - weight of landings). The drop in trawling intensity in 2017 in some habitats/areas is (most likely) a data artefact. No longevity data available to estimate benthic impact.
+
+Temporal patterns in fishing activity are available from 2009 for vessels over 15m and from 2012 for vessels over 12m. Temporal variation in fishing activity hence represents vessels over 15m (2009-2011) and vessels over 12m (2012-2018). The assessment maps and indicator values produced are based on an average for 2013-2018.

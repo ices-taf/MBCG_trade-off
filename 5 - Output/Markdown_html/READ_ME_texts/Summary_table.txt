@@ -1,0 +1,15 @@
+Analyses provided	Description
+Summary	* Values of pressure indicators I-1 to I-5 and impact indicators I-6a, I-6b, I-7a and I-7b by depth strata (Table 1). 
+ 	* Maps of swept area  ratio, median longevity of benthic fauna, and landings value and weight (Figure 1).
+ 	* Estimates of the contribution of small-scale fisheries (MBCG vessels <12m overall length) to total fishing effort in kW*fishing days (Table 2).
+Fishing intensity	* The extent of broad habitat types, and various estimates of MBCG fishing activity for those habitat types; fisheries landings, value, and intensity (Table 3). 
+ 	* Temporal variation of pressure indicators I-1, I-3 and I-4 (Figure 2).
+Core fishing grounds	* Spatial stability of core fishing grounds (smallest area responsible for 90% of the landings value) over time (Figure 3) and their spatial distribution (Figure 4).
+Fishing by métier	* Estimates of swept area, landings weight and landings value for the active métiers (Table 4).
+Impact	* Spatial distribution of MBCG fisheries impact indicator values (I-6a) and (I-6b) (Figure 5). 
+ 	* Temporal variation of impact indicators I-6a, I-6b, I-7a, and I-7b (Figure 6). 
+ 	* Landings weight and value per unit impact for the active métiers (Table 5). 
+ 	* Métier-specific impacts for the four most extensive broad habitat types (Figure 7).
+Scenarios	* A ‘Footprint reduction’ scenario presenting effects of stepwise exclusion of MBCG fisheries in each broad habitat type, in terms of effort reduction (Table 6), landings value (Table 7), and landings weight (Table 8). 
+ 	* A ‘Gear modifications’ scenario presenting the effects of gear modifications (assumed reduction in the depletion of benthic faunal biomass after a gear pass) on the quality-quantity threshold for the four most extensive habitat types (Figures 8-11).
+

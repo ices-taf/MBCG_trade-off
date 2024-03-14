@@ -1,0 +1,10 @@
+Indicator code	Indicator name	Indicator type	Description	Spatial scale	Period
+I-1	Average fishing intensity	Pressure	Average number of times a defined area is swept by mobile bottom-contacting gears (MBCG). Estimated as the sum of swept area for all vessels using MBCG divided by the total area of the defined area (e.g. within a depth range or broad habitat type).	Absolute extent (m^2^)	Year
+I-2	Proportion of fished c-squares	Pressure	The number of c-squares fished at least once by MBCG (irrespective of the swept area within the c-square), divided by the total number of c-squares within a defined area.	C-square	Year
+I-3	Proportion of area fished	Pressure	The sum of swept area across all c-squares in a defined area, where swept area in a specific c-square cannot be greater than the area of that c-square, divided by the summed area of all c-squares.	Absolute extent (m^2^)	Year
+I-4	Smallest proportion of c-squares with 90% of total fishing intensity	Pressure	The smallest proportion of the c-squares where 90% of the total swept area occurs.	C-square	Year
+I-5	Proportion of persistently unfished c-squares	Pressure	The inverse of I-2, evaluated over six years.	C-square	Assessment period
+I-6a	Average PD impact	Impact	The annual mean PD impact (Population Dynamics method, impact indicator) evaluated for a defined area.	C-square	Year
+I-6b	Average PD-sens impact	Impact	The annual mean PD-sens impact (Population Dynamics method, impact indicator for sensitive species) evaluated for a defined area.	C-square	Year
+I-7a	Proportion of c-squares with PD impact < 0.2	Impact	The proportion of c-squares within the defined area, where PD <0.2.	C-square	Year
+I-7b	Proportion of c-squares with PD-sens impact < 0.2	Impact	The proportion of c-squares within the defined area, where PD-sens <0.2.	C-square	Year

@@ -1,0 +1,10 @@
+Indicator code;Indicator name;Indicator type;Description
+I-1;Average intensity;Pressure;Average number of times a defined area is swept by mobile bottom-contacting gears (MBCG). Estimated as the sum of swept area for all vessels using MBCG divided by the total area of the defined area (e.g. of broad habitat type)
+I-2;Proportion of fished c-squares;Pressure;The number of grid cells (c-squares) fished at least once by MBCG (irrespective of the swept area within the cell), divided by the total number of grid cells (c-squares) within a defined area.
+I-3;Proportion of area fished;Pressure;The sum of swept area across all grid cells (c-squares) in a defined area, where swept area in a specific grid cell cannot be greater than the area of that grid cell, divided by the summed area of all grid cells.
+I-4;Smallest proportion of area in c-squares with 90% of total fishing intensity;Pressure;The smallest proportion of the grid cells (c-squares) where 90% of the total swept area occurs.
+I-5;Proportion of persistently unfished c-squares;Pressure;The inverse of I-2, evaluated over the entire assessment period.
+I-6a;Average PD impact;Impact;The annual mean PD impact (Population Dynamics method, impact indicator) evaluated for a defined area.
+I-6b;Average PD-sens impact;Impact;The annual mean PD-sens impact (Population Dynamics method, impact indicator for sensitive species) evaluated for a defined area.
+I-7a;Proportion of area with PD impact < 0.2;Impact;The proportion of a defined area, evaluated at the grid cell (c-square) scale, where PD <0.2.
+I-7b;Proportion of area with PD-sens impact < 0.2;Impact;The proportion of a defined area, evaluated at the grid cell (c-square) scale, where PD-sens <0.2.

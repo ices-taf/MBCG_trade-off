@@ -1,0 +1,16 @@
+Eigaard O.R., Bastardie F., Breen M.l., Dinesen G.E., Lafargue P., Nielsen J.R., et al. 2016. Estimating seafloor pressure from trawls and dredges based on gear design and dimensions. ICES J. Mar. Sci. 73(1): 27-43 https://doi.org/10.1093/icesjms/fsv099
+
+EU. 2008. Directive 2008/56/EC of the European Parliament and of the Council of 17 June 2008 establishing a framework for community action in the field of marine environmental policy (Marine Strategy Framework Directive) (Text with EEA relevance)
+
+Hiddink, J. G., Jennings, S., Sciberras, M., Bolam, S. G., Cambiè, G., McConnaughey, R. A., Mazor, T., et al. 2019 Assessing bottom-trawling impacts based on the longevity of benthic invertebrates. Journal of Applied Ecology, 56: 1075–1083. https://doi.org/10.1111/1365-2664.13278.
+
+ICES. 2018. Interim Report of the Working Group on Fisheries Benthic Impact and Trade-offs (WGFBIT), 12–16 November 2018, ICES Headquarters, Copenhagen, Denmark. ICES CM 2018/HAPISG:21. 74 pp.
+
+ICES. 2022. Working Group on Fisheries Benthic Impact and Trade-offs (WGFBIT; outputs from 2021meeting). ICES Scientific Reports. 4:9. 133 pp. http://doi.org/10.17895/ices.pub.10042 
+
+Pitcher, C. R., Ellis, N., Jennings, S., Hiddink, J. G., Mazor, T., Kaiser, M. J., Kangas, M. I., et al. 2017. Estimating the sustainability of towed fishing-gear impacts on seabed habitats: a simple quantitative risk assessment method applicable to data-limited fisheries. Methods in Ecology and Evolution. 8: 472–480. https://doi.org/10.1111/2041-210X.12705.
+
+Rijnsdorp, A. D., Bolam, S. G., Garcia, C., Hiddink, J. G., Hintzen, N. T., van Denderen, D. P., and Van Kooten, T. 2018. Estimating sensitivity of seabed habitats to disturbance by bottom trawling based on the longevity of benthic fauna. Ecological Applications, 28: 1302–1312. https://doi.org/10.1002/eap.1731
+
+Rijnsdorp AD, Hiddink JG, van Denderen PD, Hintzen NT, Eigaard OR, Valanko S, Bastardie F, Bolam SG, Boulcott P, Egekvist J, Garcia C. 2020. Different bottom trawl fisheries have a differential impact on the status of the North Sea seafloor habitats. ICES Journal of Marine Science. 77(5): 1772-86. https://doi.org/10.1093/icesjms/fsaa050
+
