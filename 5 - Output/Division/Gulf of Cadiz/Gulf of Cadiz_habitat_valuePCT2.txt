@@ -1,0 +1,19 @@
+"MSFD","HabExt","TotVal","pct_10","pct_20","pct_30","pct_40","pct_50","pct_60","pct_70","pct_80","pct_90"
+"Total",11.01,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Upper bathyal sediment",4.08,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Circalittoral sand",1.79,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Circalittoral mud",1.72,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Offshore circalittoral mud",1.28,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Offshore circalittoral sand",0.57,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Infralittoral sand",0.44,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Circalittoral mixed sediment",0.15,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Infralittoral rock and biogenic reef",0.14,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Circalittoral rock and biogenic reef",0.13,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Infralittoral mixed sediment",0.13,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Upper bathyal rock and biogenic reef",0.12,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Infralittoral mud",0.12,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Infralittoral coarse sediment",0.1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Circalittoral coarse sediment",0.1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Offshore circalittoral coarse sediment",0.08,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Offshore circalittoral mixed sediment",0.06,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Unknown",0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA

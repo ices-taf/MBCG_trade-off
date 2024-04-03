@@ -1,10 +1,15 @@
-"Indicators","0 to 200 m","200 to 400 m","400 m to 800 m"
-"Average fishing intensity (I-1)",0,NA,NA
-"Proportion of fished c-squares (I-2)",0,NA,NA
-"Proportion of area fished (I-3)",0,NA,NA
-"Smallest  prop. of c-squares with 90% of total fishing intensity (I-4)",NA,NA,NA
-"Proportion of persistently unfished c-squares (I-5)",1,NA,NA
-"Average PD impact (I-6a)",0,NA,NA
-"Average PD-sens impact (I-6b)",0,NA,NA
-"Proportion of c-squares with PD impact < 0.2 (I-7a)",1,NA,NA
-"Proportion of c-squares with PD-sens impact < 0.2 (I-7b)",1,NA,NA
+"Indicators","0 to 200 m","200 to 400 m","400 to 800 m"
+"I-1: Average fishing intensity","0","NP","NP"
+"I-2: Proportion of area fished, 
+evaluated at c-square scale (%)","0","NP","NP"
+"I-3: Proportion of area fished (%)","0","NP","NP"
+"I-4: Smallest proportion of area with 90% of fishing intensity, 
+evaluated at c-square scale (%)","NA","NP","NP"
+"I-5: Proportion of area persistently unfished, 
+evaluated at c-square scale (%)","100","NP","NP"
+"I-6a: Average PD impact","0","NP","NP"
+"I-6b: Average PD-sens impact","0","NP","NP"
+"I-7a: Proportion of area with PD impact < 0.2, 
+evaluated at c-square scale (%)","100","NP","NP"
+"I-7b: Proportion of area with PD-sens impact < 0.2, 
+evaluated at c-square scale (%)","100","NP","NP"

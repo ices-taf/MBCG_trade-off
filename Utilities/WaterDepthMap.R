@@ -57,7 +57,7 @@ if(Assregion == EcoReg){
   APlab <- st_centroid(AreaPoly)
   APlab$label <- LETTERS[1:nrow(AreaPoly)]
   
-  load(paste0(pathdir, "/1 - Input env/FAO/FAO.Rdata"))
+  load(paste0(pathdir_nogit, "/GIS/FAO/FAO.Rdata"))
   load(paste0(pathdir, "/1 - Input env/FAOlab.Rdata"))
   
   g_legend<-function(a.gplot){

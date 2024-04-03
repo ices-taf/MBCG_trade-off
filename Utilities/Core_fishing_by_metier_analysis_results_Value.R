@@ -2,14 +2,18 @@
 
 pathdir_output <- paste(pathdir,"5 - Output",Assunit,Assregion,sep="/")
 setwd(pathdir_output)  
-dir.create("shapefiles", showWarnings = FALSE)
-#dir.create("CSV", showWarnings = FALSE)
 
 # subset all areas with longevity (north sea has no longevity prediction for Norwegian trench)
 if (p %in% regions_with_impact){
   Region <- Region[!(is.na(Region$medlong)),]
 }
 reguni <- ifelse(Assunit == "Division","division","Ecoregion")
+
+## Subset Bay of Biscay & Iberian Coast ecoregion to only Gulf of Biscay
+if (EcoReg == "Bay of Biscay and the Iberian Coast"){
+  RegionOrig <- Region
+  Region <- subset(Region, division == "Gulf of Biscay")
+}
 
 #Reformat data, define metiers
 vmsValue <- select(FisheriesMet,csquares, contains("_value_"))
@@ -105,8 +109,6 @@ core <- ggplot(data=VMS_MBCG_90pct2, aes(x= pct, y= wktradeMet)) +
   scale_fill_manual(values=brewer.pal(7, "OrRd"), name = "Number of years as core fishing ground") +
   guides(fill = guide_legend(nrow = 1)) +
   scale_x_continuous(limits = c(0,105), breaks = c(seq(0,100,20)), minor_breaks = seq(0,100,10)) +
-  # scale_y_discrete(limits = c(levels(VMS_MBCG_90pct2$wktradeMet), ""),
-  #                  breaks = c(levels(VMS_MBCG_90pct2$wktradeMet))) +
   annotate("text", label = labtext1$lab, x=labtext1$CFG_size, y=nrow(labtext1):1, size=2.5, fontface="italic", hjust=0) +
   annotate("text", label = labtext2$lab, x=105, y=nrow(labtext2):1, size=3, fontface="italic", hjust=0.5) 
 
@@ -114,6 +116,8 @@ jpeg(paste(pathdir_output,paste(Assregion,"coreF_fig1Val.jpg",sep="_"),sep="/"),
      width=8,height=4.5, units = "in", res = 150 ) 
 print(core)
 dev.off()
+
+save(VMS_MBCG_90pct2, file=paste0(pathdir_output, "/SpStCFG.Rdata"))
 
 # source CSquare2LonLat
 source(paste(pathdir,"Utilities/CSquare2LonLat.R",sep="/"))
@@ -135,14 +139,6 @@ MBCG_90pct_poly <-
   ) %>%
   st_as_sf(crs = 4326, wkt = "wkt")
 
-# write_shape <- function(m){
-#   st_write(MBCG_90pct_poly[MBCG_90pct_poly$wktradeMet==m,], dsn= paste0(pathdir_output,"/shapefiles"), layer=paste0("MBCG_90pct_poly_",Assregion,"_",m,".shp"), driver="ESRI Shapefile", append=F)
-# }
-# 
-# for(m in metiers){
-#   write_shape(m=m)
-# }
-
 # get polygons Total MBCG poly
 VMS_MBCG_sum$Longitude=CSquare2LonLat(as.character(VMS_MBCG_sum$csquares),0.05)$SI_LONG
 VMS_MBCG_sum$Latitude=CSquare2LonLat(as.character(VMS_MBCG_sum$csquares),0.05)$SI_LAT
@@ -160,14 +156,7 @@ MBCG_total_poly <-
                  Longitude + 0.025, ' ', Latitude + 0.025, '))')
   ) %>%
   st_as_sf(crs = 4326, wkt = "wkt")
-# 
-# write_shape <- function(m){
-#   st_write(MBCG_total_poly[MBCG_total_poly$wktradeMet==m,], dsn=paste0(pathdir_output,"/shapefiles"), layer=paste0("MBCG_total_poly_",Assregion,"_",m,".shp"), driver="ESRI Shapefile", append=F)
-# }
-# 
-# for(m in metiers){
-#   write_shape(m=m)
-# }
+
 
 # get map 
 worldMap <- map_data("world")
@@ -213,7 +202,6 @@ for(m in metiers){
   maplist[[m]] <- figmap
 } # end m-loop
 
-
 plotdat <- MBCG_total_poly[MBCG_total_poly$wktradeMet == metiers[1],]
 coredat <- MBCG_90pct_poly[MBCG_90pct_poly$wktradeMet == metiers[1],]
 plotdat$CoreYears <- coredat$n_years [match(plotdat$csquares, coredat$csquares)]
@@ -250,10 +238,10 @@ print(grid.arrange(arrangeGrob(grobs = maplist,
 dev.off()
 
 
-# now delete the two folders, too big for github
-unlink(paste0(pathdir_output,"/shapefiles"), recursive = TRUE)
-#unlink(list.files(pathdir_output, pattern="area_overlap", full.names=TRUE), recursive=TRUE)
-unlink(paste(pathdir_output,"CSV",sep="/"), recursive = TRUE)
+## Now 'restore' original Region file for BoB&IC region
+if(EcoReg == "Bay of Biscay and the Iberian Coast"){
+  Region <- RegionOrig
+}
 
 rm(list= ls()[!(ls() %in% c('pathdir','pathdir_nogit','Assregion_index','Assunit_index',
                             'EcoReg_index','GVA','GVAMet','Period','AssPeriod',"GVAPeriod",

@@ -1,5 +1,5 @@
-"","DRB_MOL","OT_CRU","OT_DMF","OT_MIX","OT_SPF","SDN_DMF","SSC_DMF","TBB_CRU","TBB_DMF","TBB_MOL"
-"Landings (1000 tonnes)/PD impact",0.355,0.015,0.296,0.074,1.405,0.071,0.064,0.107,0.048,0.74
-"Value (million euro)/PD impact",0.636,0.077,0.203,0.202,0.452,0.194,0.151,0.437,0.185,0.926
-"Landings (1000 tonnes)/PD-sens impact",0.239,0.011,0.186,0.046,1.296,0.045,0.038,0.073,0.03,0.702
-"Value (million euro)/PD-sens impact",0.428,0.057,0.128,0.126,0.416,0.123,0.089,0.299,0.116,0.878
+"","OT_CRU","OT_DMF","SSC_DMF","TBB_DMF","SDN_DMF","TBB_CRU","OT_MIX","DRB_MOL","OT_SPF","TBB_MOL"
+"Landings (tonnes)/PD impact",15.4,295.7,64.3,47.6,71.2,106.8,74.4,355.1,1405,740.4
+"Value (*1000 euro)/PD impact",77.3,203.3,151.2,184.9,193.8,437.3,202.1,635.7,451.7,926.2
+"Landings (tonnes)/PD-sens impact",11.4,186.1,37.7,29.9,45.2,73,46.4,239,1295.5,701.6
+"Value (*1000 euro)/PD-sens impact",57.4,128,88.7,116.3,123,298.8,126,427.9,416.5,877.6

@@ -9,6 +9,7 @@
 
 # R libraries
   #library(rgdal) # outdated
+  library(plyr)
   library(dplyr)
   library(rje)
   library(ggplot2)
@@ -23,4 +24,5 @@
   library(tidyr)
   library(mapview)
   library(data.table)
+
   

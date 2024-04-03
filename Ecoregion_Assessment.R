@@ -29,7 +29,7 @@ rm(list = ls())
   regions_with_impact <- c(1:5,7:21) # no sensitivity data for the Norwegian Trench (6)
   regions_with_corefishing <- c(1:10,13:18) # subdivisions: "Gulf of Finland"(11), "Gulf of Riga"(12), "North-Iberian Atlantic"(19), "South-Iberian Atlantic"(20), and "Gulf of Cadiz"(21) have no fishing values reported.
 
-  for (p in 10:21){
+  for (p in 1:21){
    Assregion <- Assregion_index[p]
    EcoReg    <- EcoReg_index[p]
    Assunit <- Assunit_index[p]
@@ -97,4 +97,9 @@ rm(list = ls())
   
   setwd(paste(pathdir,"Utilities",sep="/"))
   source("Exceptions_in_tables_data_limitations.R")
+  
+## Run script to produce summary tables.
+  setwd(paste(pathdir,"Utilities",sep="/"))
+  source("Summarytables.R")
+  
   

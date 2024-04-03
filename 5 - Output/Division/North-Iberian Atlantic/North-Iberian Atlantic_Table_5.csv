@@ -1,5 +1,5 @@
-"","OT_DMF","OT_MIX","OT_SPF","SDN_DMF"
-"Landings (1000 tonnes)/PD impact",0.081,0.238,0.066,0.041
-"Value (million euro)/PD impact",0.005,0,0.019,0.101
-"Landings (1000 tonnes)/PD-sens impact",0.07,0.2,0.066,0.037
-"Value (million euro)/PD-sens impact",0.005,0,0.019,0.092
+"","OT_DMF","OT_MIX","SDN_DMF","OT_SPF"
+"Landings (tonnes)/PD impact",81.4,238.4,41,65.9
+"Value (*1000 euro)/PD impact",NA,NA,NA,NA
+"Landings (tonnes)/PD-sens impact",70.3,200.2,37.2,65.8
+"Value (*1000 euro)/PD-sens impact",NA,NA,NA,NA

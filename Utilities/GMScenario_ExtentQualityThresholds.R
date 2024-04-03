@@ -18,8 +18,8 @@ RegHab <- RegHab[!is.na(medlong)] # without medlong
 
 ## Select 5 most abundant BHTs (copy from table 3)
 tab3 <- read.csv(file=paste(pathdir, "5 - Output", Assunit, Assregion, paste0(Assregion, "_Table_3.csv"), sep="/"))
-tab3 <- subset(tab3, tab3$MSFD.broad.habitat.type %in% RegHab$MSFD)
-IDs <- tab3$MSFD.broad.habitat.type[1:5]
+tab3 <- subset(tab3, tab3$MSFD %in% RegHab$MSFD)
+IDs <- tab3$MSFD[1:5]
 
 ## Calculate average RBS-value over 2017-2022
 clmnids <- c(paste0("state_", 2017:2022))

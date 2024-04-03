@@ -17,8 +17,8 @@ for(iHab in 1:5){
     FigGM <- ggplot(plotdat, aes(y = extent, x = quality, group = ModificationLevel))+
       geom_line(aes(linetype=as.factor(ModificationLevel), colour=as.factor(ModificationLevel)), linewidth=plotdat$LineSize)+
       scale_y_continuous(limits = c(ymin-5, 100), breaks =  seq(80, 100, 5)) +
-      geom_hline(yintercept=75, lty = 2) + scale_linetype_manual(values=c(1:4), name=paste0("Broad habitat type:\n", habs[iHab], "\n\n\nGear modification level (%)"), labels=c("0", "5", "10", "20")) +
-      scale_color_manual(values=c("black", "darkorange", "blue", "red"), name=paste0("Broad habitat type:\n", habs[iHab], "\n\n\nGear modification level (%)"), labels=c("0", "5", "10", "20")) +
+      geom_hline(yintercept=75, lty = 2) + scale_linetype_manual(values=c(1:4), name=paste0("Broad habitat type:\n", habs[iHab], "\n\n\nAssumed reduction in depletion \nfrom gear modification (%)"), labels=c("0", "5", "10", "20")) +
+      scale_color_manual(values=c("black", "darkorange", "blue", "red"), name=paste0("Broad habitat type:\n", habs[iHab], "\n\n\nAssumed reduction in depletion \nfrom gear modification (%)"), labels=c("0", "5", "10", "20")) +
       theme_classic()+
       labs(x="Habitat quality (1 - impact)",
            y= "Haibtat extent (%)") +
@@ -31,8 +31,8 @@ for(iHab in 1:5){
     FigGM <- ggplot(plotdat, aes(y = extent, x = quality, group = ModificationLevel))+
       geom_line(aes(linetype=as.factor(ModificationLevel), colour=as.factor(ModificationLevel)), linewidth=plotdat$LineSize)+
       scale_y_continuous(limits = c(ymin-5, 100), breaks =  rev(seq(100, ymin, -10))) +
-      geom_hline(yintercept=75, lty = 2) + scale_linetype_manual(values=c(1:4), name=paste0("Broad habitat type:\n", habs[iHab], "\n\n\nGear modification level (%)"), labels=c("0", "5", "10", "20")) +
-      scale_color_manual(values=c("black", "darkorange", "blue", "red"), name=paste0("Broad habitat type:\n", habs[iHab], "\n\n\nGear modification level (%)"), labels=c("0", "5", "10", "20")) +
+      geom_hline(yintercept=75, lty = 2) + scale_linetype_manual(values=c(1:4), name=paste0("Broad habitat type:\n", habs[iHab], "\n\n\nAssumed reduction in depletion \nfrom gear modification (%)"), labels=c("0", "5", "10", "20")) +
+      scale_color_manual(values=c("black", "darkorange", "blue", "red"), name=paste0("Broad habitat type:\n", habs[iHab], "\n\n\nAssumed reduction in depletion \nfrom gear modification (%)"), labels=c("0", "5", "10", "20")) +
       theme_classic()+
       labs(x="Habitat quality (1 - impact)",
            y= "Haibtat extent (%)") +
@@ -45,8 +45,8 @@ for(iHab in 1:5){
     FigGM <- ggplot(plotdat, aes(y = extent, x = quality, group = ModificationLevel))+
       geom_line(aes(linetype=as.factor(ModificationLevel), colour=as.factor(ModificationLevel)), linewidth=plotdat$LineSize)+
       scale_y_continuous(limits = c(ymin-5, 100), breaks =  rev(seq(100, ymin, -20))) +
-      geom_hline(yintercept=75, lty = 2) + scale_linetype_manual(values=c(1:4), name=paste0("Broad habitat type:\n", habs[iHab], "\n\n\nGear modification level (%)"), labels=c("0", "5", "10", "20")) +
-      scale_color_manual(values=c("black", "darkorange", "blue", "red"), name=paste0("Broad habitat type:\n", habs[iHab], "\n\n\nGear modification level (%)"), labels=c("0", "5", "10", "20")) +
+      geom_hline(yintercept=75, lty = 2) + scale_linetype_manual(values=c(1:4), name=paste0("Broad habitat type:\n", habs[iHab], "\n\n\nAssumed reduction in depletion \nfrom gear modification (%)"), labels=c("0", "5", "10", "20")) +
+      scale_color_manual(values=c("black", "darkorange", "blue", "red"), name=paste0("Broad habitat type:\n", habs[iHab], "\n\n\nAssumed reduction in depletion \nfrom gear modification (%)"), labels=c("0", "5", "10", "20")) +
       theme_classic()+
       labs(x="Habitat quality (1 - impact)",
            y= "Haibtat extent (%)") +

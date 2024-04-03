@@ -56,7 +56,7 @@ econame <- name_dat[reg]
 pathdir_mark <- "D:\\MBCG_trade-off\\5 - Output"
 
 outputs <- paste(pathdir_mark,"\\(sub-)region\\",ecoregion,"\\",sep='')
-outtext <- paste(pathdir_mark,"\\(sub-)region\\",ecoregion,"\\Assessment text\\",sep='')
+outtext <- paste(pathdir_mark,"\\Markdown_html\\sections_texts\\",sep='')
 ```
 
 ```{r add-to-main, child = paste(pathdir_mark,'/Markdown_html/Markdown_allplots.Rmd',sep="")}
@@ -68,8 +68,6 @@ reg <- 2
 ecoregion <- reg_dat[reg]
 econame <- name_dat[reg]
 outputs <- paste(pathdir_mark,"\\Division\\",ecoregion,"\\",sep='')
-outtext <- paste(pathdir_mark,"\\Division\\",ecoregion,"\\Assessment text\\",sep='')
-
 ```
 
 ```{r add-to-main, child = paste(pathdir_mark,'/Markdown_html/Markdown_allplotsDIV.Rmd',sep="")}
@@ -80,10 +78,9 @@ reg <- 3
 ecoregion <- reg_dat[reg]
 econame <- name_dat[reg]
 outputs <- paste(pathdir_mark,"\\Division\\",ecoregion,"\\",sep='')
-outtext <- paste(pathdir_mark,"\\Division\\",ecoregion,"\\Assessment text\\",sep='')
 ```
 
-```{r add-to-main, child = paste(pathdir_mark,'/Markdown_html/Markdown_allplotsDIV.Rmd',sep="")}
+```{r add-to-main, child = paste(pathdir_mark,'/Markdown_html/Markdown_plots_NoCFG.Rmd',sep="")}
 ```
 
 ```{r echo=FALSE, message=FALSE}
@@ -91,10 +88,9 @@ reg <- 4
 ecoregion <- reg_dat[reg]
 econame <- name_dat[reg]
 outputs <- paste(pathdir_mark,"\\Division\\",ecoregion,"\\",sep='')
-outtext <- paste(pathdir_mark,"\\Division\\",ecoregion,"\\Assessment text\\",sep='')
 ```
 
-```{r add-to-main, child = paste(pathdir_mark,'/Markdown_html/Markdown_allplotsDIV.Rmd',sep="")}
+```{r add-to-main, child = paste(pathdir_mark,'/Markdown_html/Markdown_plots_NoCFG.Rmd',sep="")}
 ```
 
 ```{r echo=FALSE, message=FALSE}
@@ -102,7 +98,6 @@ reg <- 5
 ecoregion <- reg_dat[reg]
 econame <- name_dat[reg]
 outputs <- paste(pathdir_mark,"\\Division\\",ecoregion,"\\",sep='')
-outtext <- paste(pathdir_mark,"\\Division\\",ecoregion,"\\Assessment text\\",sep='')
 ```
 
 ```{r add-to-main, child = paste(pathdir_mark,'/Markdown_html/Markdown_allplotsDIV.Rmd',sep="")}
@@ -113,7 +108,6 @@ reg <- 6
 ecoregion <- reg_dat[reg]
 econame <- name_dat[reg]
 outputs <- paste(pathdir_mark,"\\Division\\",ecoregion,"\\",sep='')
-outtext <- paste(pathdir_mark,"\\Division\\",ecoregion,"\\Assessment text\\",sep='')
 ```
 
 ```{r add-to-main, child = paste(pathdir_mark,'/Markdown_html/Markdown_allplotsDIV.Rmd',sep="")}
@@ -124,14 +118,13 @@ reg <- 7
 ecoregion <- reg_dat[reg]
 econame <- name_dat[reg]
 outputs <- paste(pathdir_mark,"\\Division\\",ecoregion,"\\",sep='')
-outtext <- paste(pathdir_mark,"\\Division\\",ecoregion,"\\Assessment text\\",sep='')
 ```
 
 ```{r add-to-main, child = paste(pathdir_mark,'/Markdown_html/Markdown_allplotsDIV.Rmd',sep="")}
 ```
 
 ## Essential information {.tabset .active}
-<details>
+<details open>
 <summary> **Content of this advice product** </summary>
 ```{r echo=FALSE, message=FALSE}
 ecoreg <- reg_dat[1]
@@ -147,7 +140,7 @@ Readme$text <- gsub("ECOREG", ecoreg, Readme$text)
 hab <- read.table(paste(outtext,"Indicator_table.txt",sep=''),sep="\t", header=T)
 nam <-  gsub("[.]", " ", names(hab))
 
-kable(hab, col.names = nam, caption="<p style='color: black'><strong>Table E1. Pressure and impact indicators that are applied by (sub-)regional and subdivision area, including the spatial scale and period over which the indicators are calculated.</strong></p>",format = "html", table.attr = "style='width:100%;'", align='l') %>% 
+kable(hab, col.names = nam, caption="<p style='color: black'><strong>Table E1. Pressure and impact indicators that are applied by (sub-)region and subdivision area, including the spatial scale and period over which the indicators are calculated. C-square refers to a grid cell of dimensions 0.05° latitude * 0.05° longitude.</strong></p>",format = "html", table.attr = "style='width:100%;'", align='l') %>% 
   kable_styling(font_size=12, bootstrap_options = c("hover"))%>%
   footnote(general = "", general_title = "", footnote_as_chunk = T)
 ```
@@ -166,16 +159,19 @@ kable(hab, col.names = nam, caption="<p style='color: black'><strong>Table E2. I
 ```
 </details>
 
-<details open>
-<summary> **Data limitations in the Baltic Sea region** </summary> 
-```{r echo=FALSE, message=FALSE}
-Readme <- readtext(paste(outtext,"Local_Baltic Sea.txt",sep=''))
-```
-`r Readme$text`
-
-```{r echo=FALSE, message=FALSE,fig.align = 'left', out.width='100%', fig.topcaption=TRUE, fig.cap="**Figure E1. Map of the assessment area, showing the water depth class distributions (left), and boundaries of the relevant (MSFD) divisions and FAO rgeions (right).**"}
+<details> 
+<summary> **Assessment area** </summary>
+```{r echo=FALSE, message=FALSE,fig.align = 'left', out.width='100%', fig.topcaption=TRUE, fig.cap="**Figure E1. Map of the assessment area, showing the water depth class distributions (left), and boundaries of the relevant (MSFD) divisions and FAO regions (right).**"}
 knitr::include_graphics(paste(outputs,ecoreg,"_figureAA1_Waterdepth.png",sep=''))
 ```
+</details>
+
+<details>
+<summary> **Limitations of this advice** </summary> 
+```{r echo=FALSE, message=FALSE}
+Readme <- readtext(paste(outtext,"Limitations.txt",sep=''))
+```
+`r Readme$text`
 </details>
 
 <details>
@@ -212,4 +208,3 @@ Readme <- readtext(paste(outtext,"References.txt",sep=''))
 `r Readme$text`
 </details>
 ##  {.unnumbered}
-

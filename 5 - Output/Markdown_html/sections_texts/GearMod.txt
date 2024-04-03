@@ -1,0 +1,6 @@
+The effects of hypothetical gear modifications or changes in fishing practices were expressed in terms of their effects on the depletion of benthic fauna per gear pass. It was assumed that the modifications or changes in practice would achieve 5%, 10% or 20% less depletion per gear pass. The effects of these changes in depletion on the quality and extent of the four broad habitat types that account for the greatest proportion of the ECOREG area are presented in Figures 8 to 11. Impacts of MBCG were calculated as changes in habitat ‘quality’ (measured as 1-PD impact or 1-PDsens impact) in the fished area and expressed in terms of the increase in the quality of habitat meeting the extent threshold (>75% of a BHT not adversely affected (EC, 2024)).  
+
+
+**References:**
+
+_• EC. 2024. Commission Notice C/2024/2078 on the threshold values set under the Marine Strategy Framework Directive 2008/56/EC and Commission Decision (EU) 2017/848). Official Journal of the European Union C/2024/2078, 5pp._

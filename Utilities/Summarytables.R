@@ -1,13 +1,5 @@
 ## Script to produce summary tables from impact assessment
 
-rm(list = ls())
-
-### github folder
-pathdir <- "D:/MBCG_trade-off"
-
-### get all libraries
-source(paste(pathdir,"Utilities/Libraries_WKTRADE3.R",sep="/"))
-
 ### create dt of marine reporting areas
 Sregions <- c("Greater North Sea", "Baltic Sea","Celtic Seas","Bay of Biscay and the Iberian Coast")
 NS_div <- c("Kattegat", "Norwegian Trench", "Central North Sea", "Southern North Sea", "Channel")
@@ -86,15 +78,16 @@ for(iReg in unique(RegDivs$EcoReg)){
     Tab1[[iDiv]] <- T1$area_sqkm [match(Tab1$depthclass, T1$depthclass)]
   }}
 
+Tab1[is.na(Tab1)]<- 0
 ## Write full table to csv (regions + divisions)
-write.csv(Tab1, file=paste0(pathdir, "/5 - Output/Summary_tables/Tab1D_AreaExt.csv"), 
+write.csv2(Tab1, file=paste0(pathdir, "/5 - Output/Summary_tables/Tab1D_AreaExt.csv"), 
           row.names = FALSE)
 
 
 ## Create region only table and save to csv
 cols <- c("depthclass", unique(RegDivs$EcoReg))
 Tab1R <- Tab1[,..cols]
-write.csv(Tab1R, file=paste0(pathdir, "/5 - Output/Summary_tables/Tab1R_AreaExt.csv"), 
+write.csv2(Tab1R, file=paste0(pathdir, "/5 - Output/Summary_tables/Tab1R_AreaExt.csv"), 
           row.names = FALSE)
 
 #------------------------------------------------------------------------------------------------------------------
@@ -136,13 +129,13 @@ for(iReg in unique(RegDivs$EcoReg)){
   }}
 
 ## Write full table to csv (regions + divisions)
-write.csv(Tab2, file=paste0(pathdir, "/5 - Output/Summary_tables/Tab2D_Ext&AggFishExt.csv"), 
+write.csv2(Tab2, file=paste0(pathdir, "/5 - Output/Summary_tables/Tab2D_Ext&AggFishExt.csv"), 
           row.names = FALSE)
 
 ## Create region only table and save to csv
 cols <- c("Ind", unique(RegDivs$EcoReg))
 Tab2R <- Tab2[,..cols]
-write.csv(Tab2R, file=paste0(pathdir, "/5 - Output/Summary_tables/Tab2R_Ext&AggFishExt.csv"), 
+write.csv2(Tab2R, file=paste0(pathdir, "/5 - Output/Summary_tables/Tab2R_Ext&AggFishExt.csv"), 
           row.names = FALSE)
 
 #------------------------------------------------------------------------------------------------------------------
@@ -192,52 +185,102 @@ for(iReg in unique(RegDivs$EcoReg)){
     Tab3[[iDiv]] <- T3$ExtUnfished [match(Tab3$MSFD, T3$MSFD)]
   }}
 
+Tab3[is.na(Tab3)]<- "NP"
+
 ## Write full table to csv (regions + divisions)
-write.csv(Tab3, file=paste0(pathdir, "/5 - Output/Summary_tables/Tab3D_UnfishedExtHab.csv"), 
+write.csv2(Tab3, file=paste0(pathdir, "/5 - Output/Summary_tables/Tab3D_UnfishedExtHab.csv"), 
           row.names = FALSE)
 
 ## Create region only table and save to csv
 cols <- c("MSFD", unique(RegDivs$EcoReg))
 Tab3R <- Tab3[,..cols]
-write.csv(Tab3R, file=paste0(pathdir, "/5 - Output/Summary_tables/Tab3R_UnfishedExtHab.csv"), 
+write.csv2(Tab3R, file=paste0(pathdir, "/5 - Output/Summary_tables/Tab3R_UnfishedExtHab.csv"), 
           row.names = FALSE)
+
 #------------------------------------------------------------------------------------------------------------------
-## Table 4: Potential costs to achieve differing proportions of each MSFD BHT without MSFD fishing (based on value)
+## Table 4: Potential costs to achieve differing proportions of each MSFD BHT without MSFD fishing (based on value) PCT
 #------------------------------------------------------------------------------------------------------------------
 Tab4 <- data.table()
 ## Read in ecoregion level info on costs
 for(iReg in unique(RegDivs$EcoReg)){
   setwd(paste0(pathdir, "/5 - Output/(sub-)Region/", iReg))
-  T4 <- read.table(paste0(iReg, "_habitat_value2.txt"), header=T, sep=",")
+  T4 <- read.table(paste0(iReg, "_habitat_valuePCT2.txt"), header=T, sep=",")
   T4$EcoReg <- iReg
   T4$Div <- "All"
   Tab4 <- rbind(Tab4, T4[1,])
   
   for(iDiv in unique(subset(RegDivs, EcoReg == iReg)$Division)){
     setwd(paste0(pathdir, "/5 - Output/Division/", iDiv))
-    T4 <- read.table(paste0(iDiv, "_habitat_value2.txt"), header=T, sep=",")
+    T4 <- read.table(paste0(iDiv, "_habitat_valuePCT2.txt"), header=T, sep=",")
     T4$EcoReg <- iReg
     T4$Div <- iDiv
     Tab4 <- rbind(Tab4, T4[1,])
   }
 }
 
-Tab4$MSFD.broad.habitat.type <- NULL
-names(Tab4) <- c("HabExt_1000km2", "Pct10", "Pct20", "Pct30", "Pct40", "Pct50", "Pct60", "Pct70", 
-                      "Pct80", "Pct90", "Pct100", "Ecoregion", "Division")
-Tab4 <- Tab4[,c("Ecoregion", "Division", "HabExt_1000km2", "Pct10", "Pct20", "Pct30", "Pct40",
-                          "Pct50", "Pct60", "Pct70", "Pct80", "Pct90", "Pct100")]
+Tab4$MSFD <- NULL
+names(Tab4) <- c("HabExt_1000km2", "TotValue_1000euro", "Pct10", "Pct20", "Pct30", "Pct40", "Pct50", "Pct60", "Pct70", 
+                      "Pct80", "Pct90", "Ecoregion", "Division")
+Tab4 <- Tab4[,c("Ecoregion", "Division", "HabExt_1000km2", "TotValue_1000euro", "Pct10", "Pct20", "Pct30", "Pct40",
+                          "Pct50", "Pct60", "Pct70", "Pct80", "Pct90")]
 
 ## Write full table to csv (regions + divisions)
-write.csv(Tab4, file=paste0(pathdir, "/5 - Output/Summary_tables/Tab4D_Val_FP_Red.csv"), 
+write.csv2(Tab4, file=paste0(pathdir, "/5 - Output/Summary_tables/Tab4D_Val_FP_Red.csv"), 
           row.names = FALSE)
 
 ## Create region only table and save to csv
 Tab4R <- Tab4[Division=="All",]
 Tab4R$Division <- NULL
-write.csv(Tab4R, file=paste0(pathdir, "/5 - Output/Summary_tables/Tab4R_Val_FP_Red.csv"), 
+write.csv2(Tab4R, file=paste0(pathdir, "/5 - Output/Summary_tables/Tab4R_Val_FP_Red.csv"), 
           row.names = FALSE)
 
+#------------------------------------------------------------------------------------------------------------------
+## Table 5: Potential costs to achieve differing proportions of each MSFD BHT without MSFD fishing (based on value) ABS
+#------------------------------------------------------------------------------------------------------------------
+Tab5 <- data.table()
+## Read in ecoregion level info on costs
+for(iReg in unique(RegDivs$EcoReg)){
+  setwd(paste0(pathdir, "/5 - Output/(sub-)Region/", iReg))
+  T5 <- read.table(paste0(iReg, "_habitat_value2.txt"), header=T, sep=",")
+  T5$EcoReg <- iReg
+  T5$Div <- "All"
+  Tab5 <- rbind(Tab5, T5[1,])
+  
+  for(iDiv in unique(subset(RegDivs, EcoReg == iReg)$Division)){
+    setwd(paste0(pathdir, "/5 - Output/Division/", iDiv))
+    T5 <- read.table(paste0(iDiv, "_habitat_value2.txt"), header=T, sep=",")
+    T5$EcoReg <- iReg
+    T5$Div <- iDiv
+    Tab5 <- rbind(Tab5, T5[1,])
+  }
+}
+
+Tab5$MSFD <- NULL
+names(Tab5) <- c("HabExt_1000km2", "Pct10", "Pct20", "Pct30", "Pct40", "Pct50", "Pct60", "Pct70", 
+                 "Pct80", "Pct90", "Ecoregion", "Division")
+Tab5 <- Tab5[,c("Ecoregion", "Division", "HabExt_1000km2", "Pct10", "Pct20", "Pct30", "Pct40",
+                "Pct50", "Pct60", "Pct70", "Pct80", "Pct90")]
+Tab5$Pct10 <- round(as.numeric(Tab5$Pct10)/1E3, digits=1)
+Tab5$Pct20 <- round(as.numeric(Tab5$Pct20)/1E3, digits=1)
+Tab5$Pct30 <- round(as.numeric(Tab5$Pct30)/1E3, digits=1)
+Tab5$Pct40 <- round(as.numeric(Tab5$Pct40)/1E3, digits=1)
+Tab5$Pct50 <- round(as.numeric(Tab5$Pct50)/1E3, digits=1)
+Tab5$Pct60 <- round(as.numeric(Tab5$Pct60)/1E3, digits=1)
+Tab5$Pct70 <- round(as.numeric(Tab5$Pct70)/1E3, digits=1)
+Tab5$Pct80 <- round(as.numeric(Tab5$Pct80)/1E3, digits=1)
+Tab5$Pct90 <- round(as.numeric(Tab5$Pct90)/1E3, digits=1)
+
+
+
+## Write full table to csv (regions + divisions)
+write.csv2(Tab4, file=paste0(pathdir, "/5 - Output/Summary_tables/Tab4D_Val_FP_Red.csv"), 
+           row.names = FALSE)
+
+## Create region only table and save to csv
+Tab4R <- Tab4[Division=="All",]
+Tab4R$Division <- NULL
+write.csv2(Tab4R, file=paste0(pathdir, "/5 - Output/Summary_tables/Tab4R_Val_FP_Red.csv"), 
+           row.names = FALSE)
 
 
 

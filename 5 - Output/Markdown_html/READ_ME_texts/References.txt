@@ -8,6 +8,8 @@ ICES. 2018. Interim Report of the Working Group on Fisheries Benthic Impact and 
 
 ICES. 2022. Working Group on Fisheries Benthic Impact and Trade-offs (WGFBIT; outputs from 2021meeting). ICES Scientific Reports. 4:9. 133 pp. http://doi.org/10.17895/ices.pub.10042 
 
+ICES. 2024. Working Group on Fisheries Benthic Impact and Trade-offs (WGFBIT; outputs from 2023 meeting). ICES Scientific Reports (in prep)
+
 Pitcher, C. R., Ellis, N., Jennings, S., Hiddink, J. G., Mazor, T., Kaiser, M. J., Kangas, M. I., et al. 2017. Estimating the sustainability of towed fishing-gear impacts on seabed habitats: a simple quantitative risk assessment method applicable to data-limited fisheries. Methods in Ecology and Evolution. 8: 472–480. https://doi.org/10.1111/2041-210X.12705.
 
 Rijnsdorp, A. D., Bolam, S. G., Garcia, C., Hiddink, J. G., Hintzen, N. T., van Denderen, D. P., and Van Kooten, T. 2018. Estimating sensitivity of seabed habitats to disturbance by bottom trawling based on the longevity of benthic fauna. Ecological Applications, 28: 1302–1312. https://doi.org/10.1002/eap.1731

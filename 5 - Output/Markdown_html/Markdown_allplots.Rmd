@@ -3,6 +3,20 @@
 ### Summary {.tabset}
 ```{r echo=FALSE, message=FALSE}
 summary <- readtext(paste(outtext,"Summary.txt",sep=''), encoding = "UTF-8")
+summary$text <- gsub("ECOREG", ecoregion, summary$text)
+
+Tab1 <- read.csv(paste(outputs,ecoregion,"_Table_1.csv",sep=''))
+summary$text <- gsub("T1I3DC1", paste0(Tab1[3,2], "%"), summary$text)
+summary$text <- gsub("T1I4DC1", paste0(Tab1[4,2], "%"), summary$text)
+summary$text <- gsub("T1I5DC1", paste0(Tab1[5,2], "%"), summary$text)
+summary$text <- gsub("T1I6aDC1", paste0(Tab1[6,2], "%"), summary$text)
+summary$text <- gsub("T1I6bDC1", paste0(Tab1[7,2], "%"), summary$text)
+summary$text <- gsub("T1I7aDC1", paste0(Tab1[8,2], "%"), summary$text)
+summary$text <- gsub("T1I7bDC1", paste0(Tab1[9,2], "%"), summary$text)
+
+Tab2 <- read.csv(paste(outputs,ecoregion,"_Table_2.csv",sep=''))
+T2SSFrange <- paste0(round(min(Tab2[,4]), digits=0), " - ", round(max(Tab2[,4]), digits=0), "%")
+summary$text <- gsub("T2SSFrange", T2SSFrange, summary$text)
 ```
 `r summary$text`
 
@@ -18,7 +32,7 @@ kable(table1, col.names = nam, caption=tabtit, format = "html", table.attr = "st
 ```
 
 #### Figure 1
-```{r echo=FALSE, message=FALSE,fig.align = 'left', out.width='100%', fig.topcaption=TRUE, fig.cap=paste0("**Figure 1. Geographic distribution of fishing intensity (Swept Area Ratio), seabed sensitivity (community longevity), total landings value, and total landings weight from mobile bottom-contacting gear (MBCG) in the ", ecoregion, " area. The maps of swept area ratio, landings value, and landings weight show annual means. **")}
+```{r echo=FALSE, message=FALSE,fig.align = 'left', out.width='100%', fig.topcaption=TRUE, fig.cap=paste0("**Figure 1. Geographic distribution of fishing intensity (Swept Area Ratio), seabed sensitivity (community longevity), total landings value, and total landings weight from mobile bottom-contacting gear (MBCG) in the ", ecoregion, " area. The maps of swept area ratio, landings value, and landings weight show annual means evaluated at the c-square scale. **")}
 knitr::include_graphics(paste(outputs,ecoregion,"_figureA1.png",sep=''))
 ```
 
@@ -27,11 +41,11 @@ knitr::include_graphics(paste(outputs,ecoregion,"_figureA1.png",sep=''))
 table2 <- read.csv(paste(outputs,ecoregion,"_Table_2.csv",sep=''))
 
 nam <- c("FAO region code", "FAO region name",
-         "Total fishing effort (kW * Fishing days",
+         "Total fishing effort (kW * Fishing days)",
          "Mean contribution SSF (%)",
          "Observed range SSF contribution (%) [min - max]")
 
-tabtit <- paste0("<p style='color: black'><strong>Table 2. Contribution of small-scale fisheries (vessels <12 m overall length) to total fishing effort (kW * fishing days) in the ", ecoregion, " area. The table shows the total fishing effort (kW * fishing days) by FAO region over the period 2017-2021, and the mean contribution (%), both mean and observed range of small-scale MBCG fisheries. This analysis is based on EU STECF Fisheries Dependent Information (FDI) effort data, which includes consistent information of SSF effort (while ICES VMS data does not). Please see the Main Advice for more information.</strong></p>")
+tabtit <- paste0("<p style='color: black'><strong>Table 2. Contribution of small-scale fisheries (vessels <12 m overall length) to total fishing effort (kW * fishing days) in the ", ecoregion, " area. The table shows the total fishing effort (kW * fishing days) by FAO region over the assessment period, and the mean contribution (%) and observed range in contribution (%) of small-scale MBCG fisheries’.</strong></p>")
 
 kable(table2, col.names=nam, caption=tabtit,format = "html", table.attr = "style='width:100%;'", align=c('l','c','c','c','c')) %>%  kable_styling(font_size=12, bootstrap_options = c("hover"))
 ```
@@ -39,6 +53,19 @@ kable(table2, col.names=nam, caption=tabtit,format = "html", table.attr = "style
 ### Fishing intensity {.tabset}
 ```{r echo=FALSE, message=FALSE}
 pressure <- readtext(paste(outtext,"Pressure.txt",sep=''), encoding = "UTF-8")
+pressure$text <- gsub("ECOREG", ecoregion, pressure$text)
+Tab3 <- read.csv(paste(outputs,ecoregion,"_Table_3.csv",sep=''))
+maxkg <- Tab3[order(Tab3$avgweight, decreasing=T),]
+maxval <- Tab3[order(Tab3$avgvalue, decreasing=T),]
+
+pressure$text <- gsub("T3mainBHT", Tab3[1,1], pressure$text)
+pressure$text <- gsub("T3BHT1ext", paste0(Tab3[1,2], " *1000 km^2^ (", Tab3[1,3], "%)"), pressure$text)
+pressure$text <- gsub("T3BHT1I1", Tab3[1,7], pressure$text)
+pressure$text <- gsub("T3BHT1I3", paste0(Tab3[1,8], "%"), pressure$text)
+pressure$text <- gsub("T3BHT1I4", paste0(Tab3[1,9], "%"), pressure$text)
+pressure$text <- gsub("T3BHT1I5", paste0(Tab3[1,10], "%"), pressure$text)
+pressure$text <- gsub("T3BHTmaxkg", maxkg[1,1], pressure$text)
+pressure$text <- gsub("T3BHTmaxval", maxval[1,1], pressure$text)
 ```
 `r pressure$text`
 
@@ -46,13 +73,13 @@ pressure <- readtext(paste(outtext,"Pressure.txt",sep=''), encoding = "UTF-8")
 ```{r echo=FALSE, message=FALSE}
 table3 <- read.csv(paste(outputs,ecoregion,"_Table_3.csv",sep=''))
 
-nam <- c("MSFD broad habitat type", "Extent of habitat (x1000 km^2^)",
-         "Relative habitat abundance (%)", "Landings (x1000 tonnes)", "Value (x10^6^ euro)",
-         "Swept area (x1000 km^2^)", "Average fishing intensity (I-1)", 
+nam <- c("MSFD broad habitat type", "Extent of habitat (*1000 km^2^)",
+         "Relative habitat extent (%)", "Landings (*1000 tonnes)", "Value (*10^6^ euro)",
+         "Swept area (*1000 km^2^)", "Average fishing intensity (I-1)", 
          "Average annual extent fished (%)", 
-         "Smallest proportion of extent with 90% of fishing effort",
-         "Percentage extent unfished (%)")
-tabtit <- paste0("<p style='color: black'><strong>Table 3. Extent (in km^2^ and %) of broad habitat types in the ", ecoregion, " area, and mean annual estimates of MBCG fishing intensity, landings weight, and landings value. In addition, estimates of the average annual proportion of the fished extent, the smallest proportion of the habitat extent affected by 90% of the fishing effort, and the proportion of unfished extent are provided. </strong></p>")
+         "Smallest proportion of extent with 90% of fishing effort (%)",
+         "Percentage extent persistently unfished (%)")
+tabtit <- paste0("<p style='color: black'><strong>Table 3. Extent (in km^2^ and %) of broad habitat types in the ", ecoregion, " area, and mean annual estimates of MBCG fishing intensity, landings weight, and landings value. In addition, estimates of the average annual proportion of the fished extent, the smallest proportion of the habitat extent affected by 90% of the fishing effort, and the proportion of extent persistently unfished are provided. </strong></p>")
 
 kable(table3, col.names = nam, caption=tabtit, format = "html", table.attr = "style='width:100%;'") %>%
   kable_styling(font_size=12, bootstrap_options = c("hover"))
@@ -63,25 +90,27 @@ kable(table3, col.names = nam, caption=tabtit, format = "html", table.attr = "st
 knitr::include_graphics(paste(outputs,ecoregion,"_figureA3.png",sep=''))
 ```
 
-### Core fishing grounds {.tabset}
-```{r echo=FALSE, message=FALSE}
-coregrounds <- readtext(paste(outtext,"Core fishing grounds.txt",sep=''), encoding = "UTF-8")
-```
-`r coregrounds$text`
-
-#### Figure 3
-```{r echo=FALSE, message=FALSE,fig.align = 'left', out.width='100%', fig.topcaption=TRUE, fig.cap=paste0("**Figure 3. Spatial stability of core MBCG fishing grounds, presented as the number of years a csquare is identified as a core fishing ground (smallest area responsible for 90% of the landings value) per métier for the ", ecoregion, " area. Only métiers that were active within >50 unique c-squares during the period 2017-2022 are included. The numbers between brackets show the proportion of fished extent compared to the overall assessed area extent.**")}
-knitr::include_graphics(paste(outputs,ecoregion,"_coreF_fig1Val.jpg",sep=''))
-```
-
-#### Figure 4
-```{r echo=FALSE, message=FALSE,fig.align = 'left', out.width='100%', fig.topcaption=TRUE, fig.cap=paste0("**Figure 4. Spatial distribution of the stability of the core MBCG fishing grounds, presented as the number of years a csquare is identified as a core fishing ground (smallest area responsible for 90% of the landings value) per métier for the ", ecoregion, " area. Only métiers that were active within >50 unique c-squares during the period 2017-2022 are included.**")}
-knitr::include_graphics(paste(outputs,ecoregion,"_Fig_corefishinggroundsVAL.jpg",sep=''))
-```
-
 ### Fishing by métier {.tabset}
 ```{r echo=FALSE, message=FALSE}
 FishingMet <- readtext(paste(outtext,"Fishing by metier.txt",sep=''), encoding = "UTF-8")
+FishingMet$text <- gsub("ECOREG", ecoregion, FishingMet$text)
+
+Tab4 <- read.csv(paste(outputs,ecoregion,"_Table_4.csv",sep=''))
+SA <- data.frame(SwAr = as.numeric(t(Tab4[1,2:ncol(Tab4)])),
+                 met = colnames(Tab4[,2:ncol(Tab4)]),
+                 kgsar = as.numeric(t(Tab4[4,2:ncol(Tab4)])),
+                 valsar = as.numeric(t(Tab4[5,2:ncol(Tab4)])))
+T4maxSAmet <- subset(SA, SwAr == max(SA$SwAr))$met
+FishingMet$text <- gsub("T4maxSAmet", T4maxSAmet, FishingMet$text)
+FishingMet$text <- gsub("T4maxSAkg", Tab4[[T4maxSAmet]][4], FishingMet$text)
+FishingMet$text <- gsub("T4maxSAKGmet", subset(SA, kgsar == max(SA$kgsar))$met, FishingMet$text)
+if(ecoregion == "Bay of Biscay and the Iberian Coast"){ # remove text about landings value.
+  FishingMet$text <- gsub(", and the métier with the highest economic return per swept area is T4maxSAVALmet", "", FishingMet$text)
+  FishingMet$text <- gsub("with a value of T4maxSAval ", "", FishingMet$text)
+} else {
+  FishingMet$text <- gsub("T4maxSAVALmet", subset(SA, valsar == max(SA$valsar))$met, FishingMet$text)
+  FishingMet$text <- gsub("T4maxSAval", Tab4[[T4maxSAmet]][5], FishingMet$text)
+}
 ```
 `r FishingMet$text`
 
@@ -94,19 +123,105 @@ kable(table4, col.names = nam, caption=tabtit, format = "html", table.attr = "st
   kable_styling(font_size=12, bootstrap_options = c("hover"))
 ```
 
+
+### Core fishing grounds {.tabset}
+```{r echo=FALSE, message=FALSE}
+coregrounds <- readtext(paste(outtext,"Core fishing grounds.txt",sep=''), encoding = "UTF-8")
+if(ecoregion == "Bay of Biscay and the Iberian Coast"){
+  coregrounds$text <- gsub("ECOREG area", "Gulf of Biscay subdivision", coregrounds$text) } else 
+    {coregrounds$text <- gsub("ECOREG", ecoregion, coregrounds$text)
+  }
+load(paste(outputs,"SpStCFG.Rdata",sep=''))
+## Identify metiers with most and least core fishing ground extent
+a <- subset(VMS_MBCG_90pct2, n_years==6)
+a <- a[order(a$CFG_size, decreasing = TRUE),]
+coregrounds$text <- gsub("CFGmaxpctCFG", paste0(a[1,1]), coregrounds$text)  
+coregrounds$text <- gsub("CFGmaxCFGpct", paste0(round(a[1,8], digits=1), "%"), coregrounds$text) 
+coregrounds$text <- gsub("CFGminpctCFG", paste0(a[nrow(a),1]), coregrounds$text)  
+coregrounds$text <- gsub("CFGminCFGpct", paste0(round(a[nrow(a),8], digits=1), "%"), coregrounds$text) 
+
+## Identify most and least stable metiers wrt core fishing ground location.
+a$CFG_pct <- a$n_csquares/ a$n_csquares_CF
+a<- a[order(a$CFG_pct, decreasing = T),]
+coregrounds$text <- gsub("CFGmaxCFGmet", paste0(a[1,1]), coregrounds$text)
+coregrounds$text <- gsub("CFGminCFGmet", paste0(a[nrow(a),1]), coregrounds$text)
+
+if(ecoregion == "Bay of Biscay and the Iberian Coast"){
+  coregrounds$text <- paste0("**Note that only the Gulf of Biscay is considered in the identification of the core fishing grounds, due to missing landings values in the other subdivisions.**\n\n", coregrounds$text)
+}
+```
+`r coregrounds$text`
+
+#### Figure 3
+```{r echo=FALSE, message=FALSE}
+Fig3Cap <- ifelse(ecoregion == "Bay of Biscay and the Iberian Coast", 
+                  paste0("**Figure 3. Spatial stability of core MBCG fishing grounds, presented as the number of years a c-square is identified as a core fishing ground (smallest area yielding 90% of the landings value) per métier for the Gulf of Biscay subdivision. Only métiers that were active within >50 unique c-squares during the assessment period are included. The numbers between brackets show the proportion of fished extent compared to the overall assessed area extent.**"), 
+                  paste0("**Figure 3. Spatial stability of core MBCG fishing grounds, presented as the number of years a c-square is identified as a core fishing ground (smallest area yielding 90% of the landings value) per métier for the ", ecoregion, " area. Only métiers that were active within >50 unique c-squares during the assessment period are included. The numbers between brackets show the proportion of fished extent compared to the overall assessed area extent.**"))
+```
+
+```{r echo=FALSE, message=FALSE, fig.align = 'left', out.width='100%', fig.topcaption=TRUE, fig.cap=Fig3Cap}
+knitr::include_graphics(paste(outputs,ecoregion,"_coreF_fig1Val.jpg",sep=''))
+```
+
+#### Figure 4
+```{r echo=FALSE, message=FALSE}
+Fig4Cap <- ifelse(ecoregion == "Bay of Biscay and the Iberian Coast", 
+                  paste0("**Figure 4. Spatial distribution of the stability of the core MBCG fishing grounds, presented as the number of years a c-square is identified as a core fishing ground (smallest area yielding 90% of the landings value) per métier for the Gulf of Biscay subdivision. Only métiers that were active within >50 unique c-squares during the assessment period are included.**"),
+                  paste0("**Figure 4. Spatial distribution of the stability of the core MBCG fishing grounds, presented as the number of years a c-square is identified as a core fishing ground (smallest area yielding 90% of the landings value) per métier for the ", ecoregion, " area. Only métiers that were active within >50 unique c-squares during the assessment period are included.**"))
+```
+
+```{r echo=FALSE, message=FALSE,fig.align = 'left', out.width='100%', fig.topcaption=TRUE, fig.cap=Fig4Cap}
+knitr::include_graphics(paste(outputs,ecoregion,"_Fig_corefishinggroundsVAL.jpg",sep=''))
+```
+
 ### Impact {.tabset}
 ```{r echo=FALSE, message=FALSE}
 impact <- readtext(paste(outtext,"Impact.txt",sep=''), encoding = "UTF-8")
+impact$text <- gsub("ECOREG", ecoregion, impact$text)
+Tab4 <- read.csv(paste(outputs,ecoregion,"_Table_4.csv",sep=''))
+SA <- data.frame(SwAr = as.numeric(t(Tab4[1,2:ncol(Tab4)])),
+                 met = colnames(Tab4[,2:ncol(Tab4)]))
+T4maxSAmet <- subset(SA, SwAr == max(SA$SwAr))$met
+impact$text <- gsub("T4maxSAmet", T4maxSAmet, impact$text)
+Tab5 <- read.csv(paste(outputs,ecoregion,"_Table_5.csv",sep=''))
+impact$text <- gsub("T5landPDkg", Tab5[[T4maxSAmet]][1], impact$text)
+impact$text <- gsub("T5landPDskg", Tab5[[T4maxSAmet]][3], impact$text)
+
+PD <- data.frame(KGPD = as.numeric(t(Tab5[1, 2:ncol(Tab5)])),
+                 VALPD = as.numeric(t(Tab5[2, 2:ncol(Tab5)])),
+                 met = colnames(Tab5[,2:ncol(Tab5)]))
+impact$text <- gsub("T5maxPDkgmet", subset(PD, KGPD == max(PD$KGPD))$met, impact$text)
+impact$text <- gsub("T5maxPDKG", paste0(max(PD$KGPD), " tonnes"), impact$text)
+
+load(file=paste0(outputs, "/ImpTextDF.Rdata"))
+impact$text <- gsub("PDav", subset(impactTextDF, ind=="avPD")$val, impact$text)
+impact$text <- gsub("PDSav", subset(impactTextDF, ind=="avPDS")$val, impact$text)
+impact$text <- gsub("PDpct", subset(impactTextDF, ind=="avPDpct")$val, impact$text)
+impact$text <- gsub("PDSpct", subset(impactTextDF, ind=="avPDSpct")$val, impact$text)
+impact$text <- gsub("maximpmetPD", subset(impactTextDF, ind=="maximpmetPD")$val, impact$text)
+impact$text <- gsub("maximpvalPD", subset(impactTextDF, ind=="maximpvalPD")$val, impact$text)
+
+if(ecoregion == "Bay of Biscay and the Iberian Coast"){ # remove text about landings value.
+  impact$text <- gsub("and landings value T5landPDval euro ", "", impact$text)
+  impact$text <- gsub("and landings value T5landPDsval ", "", impact$text)
+  impact$text <- gsub(" and the métier with the highest landings value per unit impact is the T5maxPDvalmet", "", impact$text)
+  impact$text <- gsub("T5maxPDVAL", "", impact$text)
+} else {
+  impact$text <- gsub("T5landPDval", Tab5[[T4maxSAmet]][2]*1000, impact$text)
+  impact$text <- gsub("T5landPDsval", Tab5[[T4maxSAmet]][4]*1000, impact$text)
+  impact$text <- gsub("T5maxPDvalmet", subset(PD, VALPD == max(PD$VALPD))$met, impact$text)
+  impact$text <- gsub("T5maxPDVAL", paste0("(", max(PD$VALPD) * 1000, " euros)"), impact$text)
+  }
 ```
 `r impact$text`
 
 #### Figure 5
-```{r echo=FALSE, message=FALSE, fig.align = 'left', out.width='100%', fig.topcaption=TRUE,fig.cap=paste0("**Figure 5. The spatial distribution of MBCG fisheries impact in the ", ecoregion, " area, as assessed with the PD indicator (I-6a) and PD-sens indicator (I-6b), shown as annual means for 2017-2022. Descriptions of the impact indicators are provided in the ‘Essential Information’ Table E1 in this document.**")}
+```{r echo=FALSE, message=FALSE, fig.align = 'left', out.width='100%', fig.topcaption=TRUE,fig.cap=paste0("**Figure 5. The spatial distribution of MBCG fisheries impact in the ", ecoregion, " area, as assessed with the PD indicator (I-6a) and PD-sens indicator (I-6b), shown as annual means for the assessment period, evaluated at the c-square scale. Descriptions of the impact indicators are provided in the ‘Essential Information’ Table E1 in this document.**")}
 knitr::include_graphics(paste(outputs,ecoregion,"_figureA5.png",sep=''))
 ```
 
 #### Figure 6
-```{r echo=FALSE, message=FALSE,fig.align = 'left', out.width='100%', fig.topcaption=TRUE, fig.cap=paste0("**Figure 6. Temporal variation in values of the PD indicator (I-6a), PD-sens indicator (I-6b), proportion of area with PD impact < 0.2 (I-7a) and proportion of area with PD-sens impact < 0.2 (I-7b), shown for the overall area and for the four most extensive broad habitat types separately in the ", ecoregion, " area. Descriptions of the impact indicators are provided in the ‘Essential Information’ Table E1 in this document.**")}
+```{r echo=FALSE, message=FALSE,fig.align = 'left', out.width='100%', fig.topcaption=TRUE, fig.cap=paste0("**Figure 6. Temporal variation in values of the PD indicator (I-6a), PD-sens indicator (I-6b), proportion of the extent with PD impact < 0.2 (I-7a) and proportion of extent with PD-sens impact < 0.2 (I-7b), shown for the overall area and for the four most extensive broad habitat types separately in the ", ecoregion, " area. Descriptions of the impact indicators are provided in the ‘Essential Information’ Table E1 in this document.**")}
 knitr::include_graphics(paste(outputs,ecoregion,"_figureA6.png",sep=''))
 ```
 
@@ -121,55 +236,61 @@ kable(table5, col.names = nam, caption=tabtit, format = "html", table.attr = "st
 ```
 
 #### Figure 7
-```{r, echo=FALSE,fig.align = 'left', out.width='100%', message=FALSE, fig.topcaption=TRUE, fig.cap=paste0("**Figure 7. Métier-related impacts, as measured with the PD indicator (top) and PD-sens indicator (bottom), on the four most extensive broad habitat types in the ", ecoregion, " area.**")}
+```{r, echo=FALSE,fig.align = 'left', out.width='100%', message=FALSE, fig.topcaption=TRUE, fig.cap=paste0("**Figure 7. Métier-related impacts, reported as annual means of the PD indicator (I-6a, top) and PD-sens indicator (I-6b, bottom), on the four most extensive broad habitat types in the ", ecoregion, " area.**")}
 knitr::include_graphics(paste(outputs,ecoregion,"_figureA8.png",sep=''))
 ```
 
 ### Scenarios {.tabset}
-_Some overall text about the scenarios_
 
 #### Footprint reduction {.tabset}
 ```{r echo=FALSE, message=FALSE}
 Management <- readtext(paste(outtext,"Management.txt",sep=''), encoding = "UTF-8")
+Management$text <- gsub("ECOREG", ecoregion, Management$text)
+Tab6 <- read.table(paste(outputs,ecoregion,"_habitat_effortPCT2.txt",sep=''),header=T,sep=",",  colClasses = 'character')
+Tab7 <- read.table(paste(outputs,ecoregion,"_habitat_weightPCT2.txt",sep=''),header=T,sep=",",  colClasses = 'character')
+Tab8 <- read.table(paste(outputs,ecoregion,"_habitat_valuePCT2.txt",sep=''),header=T,sep=",",  colClasses = 'character')
+
+Management$text <- gsub("T630pctALL", paste0(Tab6[1,6], "%"), Management$text)
+Management$text <- gsub("T730pctALL", paste0(Tab7[1,6], "%"), Management$text)
+
+if(ecoregion == "Bay of Biscay and the Iberian Coast"){ # remove text about landings value.
+Management$text <- gsub(" and T830pctALL of the landings value", ". No estimation could be provided for the loss in landings value ", Management$text)} else {
+  Management$text <- gsub("T830pctALL", paste0(Tab8[1,6], "%"), Management$text)
+}
+
 ```
 `r Management$text`
 
 ##### Table 6: Effort {.tabset}
 ```{r echo=FALSE, message=FALSE}
-hab <-  read.table(paste(outputs,ecoregion,"_habitat_effort2.txt",sep=''),header=T,sep=",",  colClasses = 'character')
-hab <- hab[,-13] # for now, as I included the 100% exclusion option
-nam <- gsub("[X]", " ", names(hab))
-nam[1:3] <-c("MSFD broad habitat type", "Extent of habitat \n(x1000 km^2^)", "Total area swept \n(x1000 km^2^")
-tabtit <- paste0("<p style='color: black'><strong>Table 6. The effects of stepwise exclusion of all MBCG fisheries from a specified proportion of a MSFD broad habitat type within the ", ecoregion, " area, on swept area (presented as % of total swept area within that habitat type). The stepwise exclusion is conducted in 10% increments, and within each successive increment from 10% to 90% the c-squares with the lowest recorded rank MBCG swept area are excluded.</strong></p>")
+hab <-  read.table(paste(outputs,ecoregion,"_habitat_effortPCT2.txt",sep=''),header=T,sep=",",  colClasses = 'character')
+nam <- c("MSFD broad habitat type", "Extent of habitat \n(*1000 km^2^)", "Total area swept \n(*1000 km^2^", "10%", "20%", "30%", "40%", "50%", "60%", "70%", "80%", "90%")
+tabtit <- paste0("<p style='color: black'><strong>Table 6. The effects of stepwise exclusion of all MBCG fisheries from a specified proportion of a MSFD broad habitat type within the ", ecoregion, " area, on swept area (presented as % of total swept area within that habitat type). The stepwise exclusion is conducted in 10% increments, and within each successive increment from 10% to 90% the c-squares with the lowest recorded rank MBCG swept area are excluded. Note that the top row shows the total estimate for all habitats combined.</strong></p>")
 
 kable(hab, col.names = nam, caption=tabtit, format = "html", table.attr = "style='width:100%;'", align='l') %>% 
   kable_styling(font_size=12, bootstrap_options = c("hover"))
 ```
 
-##### Table 7: Landings value
+##### Table 7: Landings weight
 ```{r echo=FALSE, message=FALSE}
-hab <- read.table(paste(outputs,ecoregion,"_habitat_value2.txt",sep=''),header=T,sep=",",  colClasses = 'character')
-hab <- hab[,-12] # for now, as I included the 100% exclusion option
-
-nam <- gsub("[X]", " ", names(hab))
-nam[1:2] <-c("MSFD broad habitat type", "Extent of habitat \n(x1000 km^2^)")
-tabtit <- paste0("<p style='color: black'><strong>Table 7. The effects of stepwise exclusion of all MBCG fisheries from a specified proportion of a MSFD broad habitat type within the ", ecoregion, " area, on landings value (in 10^6^ euro). The stepwise exclusion is conducted in 10% increments, and within each successive increment from 10% to 90% the c-squares with the lowest recorded rank MBCG swept area are excluded. Note that the top row shows the total estimate for all habitats combined.</strong></p>")
+hab <- read.table(paste(outputs,ecoregion,"_habitat_weightPCT2.txt",sep=''),header=T,sep=",",  colClasses = 'character')
+nam <- c("MSFD broad habitat type", "Extent of habitat \n(*1000 km^2^)", "Total landings weight (*1000 kg)", "10%", "20%", "30%", "40%", "50%", "60%", "70%", "80%", "90%")
+tabtit <- paste0("<p style='color: black'><strong>Table 7. The effects of stepwise exclusion of all MBCG fisheries from a specified proportion of a MSFD broad habitat type within the ", ecoregion, " area, on landings weight (presented as % of total landings weight within that habitat type). The stepwise exclusion is conducted in 10% increments, and within each successive increment from 10% to 90% the c-squares with the lowest recorded rank MBCG swept area are excluded. Note that the top row shows the total estimate for all habitats combined. </strong></p>")
 
 kable(hab, col.names = nam, caption=tabtit, format = "html", table.attr = "style='width:100%;'", align='l') %>% 
   kable_styling(font_size=12, bootstrap_options = c("hover"))
 ```
 
-##### Table 8: Landings weight
+##### Table 8: Landings value
 ```{r echo=FALSE, message=FALSE}
-hab <- read.table(paste(outputs,ecoregion,"_habitat_weight2.txt",sep=''),header=T,sep=",",  colClasses = 'character')
-hab <- hab[,-12] # for now, as I included the 100% option
-nam <- gsub("[X]", " ", names(hab))
-nam[1:2] <-c("MSFD broad habitat type", "Extent of habitat \n(x1000 km^2^)")
-tabtit <- paste0("<p style='color: black'><strong>Table 8. The effects of stepwise exclusion of all MBCG fisheries from a specified proportion of a MSFD broad habitat type within the ", ecoregion, " area, on landings weight (in 10^6^ kg). The stepwise exclusion is conducted in 10% increments, and within each successive increment from 10% to 90% the c-squares with the lowest recorded rank MBCG swept area are excluded. Note that the top row shows the total estimate for all habitats combined. </strong></p>")
+hab <- read.table(paste(outputs,ecoregion,"_habitat_valuePCT2.txt",sep=''),header=T,sep=",",  colClasses = 'character')
+nam <- c("MSFD broad habitat type", "Extent of habitat \n(*1000 km^2^)", "Total landings value (*1000 euro)", "10%", "20%", "30%", "40%", "50%", "60%", "70%", "80%", "90%")
+tabtit <- paste0("<p style='color: black'><strong>Table 8. The effects of stepwise exclusion of all MBCG fisheries from a specified proportion of a MSFD broad habitat type within the ", ecoregion, " area, on landings value (presented as % of total landings value within that habitat type). The stepwise exclusion is conducted in 10% increments, and within each successive increment from 10% to 90% the c-squares with the lowest recorded rank MBCG swept area are excluded. Note that the top row shows the total estimate for all habitats combined.</strong></p>")
 
 kable(hab, col.names = nam, caption=tabtit, format = "html", table.attr = "style='width:100%;'", align='l') %>% 
   kable_styling(font_size=12, bootstrap_options = c("hover"))
 ```
+
 
 #### Gear modifications {.tabset}
 ```{r echo=FALSE, message=FALSE}
@@ -178,22 +299,22 @@ GearMod <- readtext(paste(outtext,"GearMod.txt",sep=''), encoding = "UTF-8")
 `r GearMod$text`
 
 ##### Figure 8: Habitat 1 {.tabset}
-```{r, out.width="100%",echo=FALSE,fig.align = 'left', message=FALSE, fig.topcaption=TRUE, fig.cap=paste0("**Figure 8. Effects of gear modifications (5%, 10%, and 20% lower depletion) on the quality-quantity threshold for the most abundant MSFD habitat type in the ", ecoregion, " area. Habitat quality is defined as 1 - impact, with impact calculated as PD (I-6a) or PD-sens (I-7a). The dotted line represent the extent threshold of 75%.**")}
+```{r, out.width="100%",echo=FALSE,fig.align = 'left', message=FALSE, fig.topcaption=TRUE, fig.cap=paste0("**Figure 8. Effects of gear modifications (5%, 10%, and 20% lower depletion) on the quality-extent relationship for the most abundant MSFD habitat type in the ", ecoregion, " area. Habitat quality is defined as 1 - impact, with impact calculated as PD (I-6a) or PD-sens (I-7a). The dotted line represent the extent threshold of 75% for the proportion of a broad habitat type that should not be adversely affected (EU, 2024).**")}
 knitr::include_graphics(paste(outputs,ecoregion,"_GearModifications1.png",sep=''))
 ```
 
 ##### Figure 9: Habitat 2 
-```{r, out.width="100%",echo=FALSE,fig.align = 'left', message=FALSE, fig.topcaption=TRUE, fig.cap=paste0("**Figure 9. Effects of gear modifications (5%, 10%, and 20% lower depletion) on the quality-quantity threshold for the most abundant MSFD habitat type in the ", ecoregion, " area. Habitat quality is defined as 1 - impact, with impact calculated as PD (I-6a) or PD-sens (I-7a). The dotted line represent the extent threshold of 75%.**")}
+```{r, out.width="100%",echo=FALSE,fig.align = 'left', message=FALSE, fig.topcaption=TRUE, fig.cap=paste0("**Figure 9. Effects of gear modifications (5%, 10%, and 20% lower depletion) on the quality-extent relationship for the most abundant MSFD habitat type in the ", ecoregion, " area. Habitat quality is defined as 1 - impact, with impact calculated as PD (I-6a) or PD-sens (I-7a). The dotted line represent the extent threshold of 75% for the proportion of a broad habitat type that should not be adversely affected (EU, 2024).**")}
 knitr::include_graphics(paste(outputs,ecoregion,"_GearModifications2.png",sep=''))
 ```
 
 ##### Figure 10: Habitat 3 
-```{r, out.width="100%",echo=FALSE,fig.align = 'left', message=FALSE, fig.topcaption=TRUE, fig.cap=paste0("**Figure 10. Effects of gear modifications (5%, 10%, and 20% lower depletion) on the quality-quantity threshold for the most abundant MSFD habitat type in the ", ecoregion, " area. Habitat quality is defined as 1 - impact, with impact calculated as PD (I-6a) or PD-sens (I-7a). The dotted line represent the extent threshold of 75%.**")}
+```{r, out.width="100%",echo=FALSE,fig.align = 'left', message=FALSE, fig.topcaption=TRUE, fig.cap=paste0("**Figure 10. Effects of gear modifications (5%, 10%, and 20% lower depletion) on the quality-extent relationship for the most abundant MSFD habitat type in the ", ecoregion, " area. Habitat quality is defined as 1 - impact, with impact calculated as PD (I-6a) or PD-sens (I-7a). The dotted line represent the extent threshold of 75% for the proportion of a broad habitat type that should not be adversely affected (EU, 2024).**")}
 knitr::include_graphics(paste(outputs,ecoregion,"_GearModifications3.png",sep=''))
 ```
 
 ##### Figure 11: Habitat 4 
-```{r, out.width="100%",echo=FALSE,fig.align = 'left', message=FALSE, fig.topcaption=TRUE, fig.cap=paste0("**Figure 11. Effects of gear modifications (5%, 10%, and 20% lower depletion) on the quality-quantity threshold for the most abundant MSFD habitat type in the ", ecoregion, " area. Habitat quality is defined as 1 - impact, with impact calculated as PD (I-6a) or PD-sens (I-7a). The dotted line represent the extent threshold of 75%.**")}
+```{r, out.width="100%",echo=FALSE,fig.align = 'left', message=FALSE, fig.topcaption=TRUE, fig.cap=paste0("**Figure 11. Effects of gear modifications (5%, 10%, and 20% lower depletion) on the quality-extent relationship for the most abundant MSFD habitat type in the ", ecoregion, " area. Habitat quality is defined as 1 - impact, with impact calculated as PD (I-6a) or PD-sens (I-7a). The dotted line represent the extent threshold of 75% for the proportion of a broad habitat type that should not be adversely affected (EU, 2024).**")}
 knitr::include_graphics(paste(outputs,ecoregion,"_GearModifications4.png",sep=''))
 ```
 

@@ -42,21 +42,21 @@
   ma <- round(max(A3fig[[1]][,1]), digits=1)
   left<-as.data.frame(A3fig[[1]])
   plot(left[,1]~left$Year,type="o",col="black",lwd=2, pch=16, yaxt="n",ylim=c(0,ma+0.5),
-       ylab=expression(plain("I-1: Average fishing intensity (year")^plain("-1")*")"))
+       ylab=expression(plain("I-1: Average fishing intensity (year")^plain("-1")*")"), xlab="Year")
   axis(2,las=1)
 
   # middle panel
   middle <- as.data.frame(A3fig[[2]])
   middle[,1] <- middle[,1]* 100
   plot(middle[,1]~middle$Year,type="o",col="black",lwd=2, pch=16, yaxt="n",ylim=c(0,100),
-       ylab="I-3: Proportion of area fished",xlab="Year")
+       ylab="I-3: Proportion of area fished (%)",xlab="Year")
   axis(2,seq(0,100,20),las=1)
 
   # right panel
   right<-as.data.frame(A3fig[[3]])
   right[,1] <- right[,1]* 100
   plot(right[,1]~right$Year,type="o",col="black",lwd=2, pch=16, yaxt="n",ylim=c(0,100),
-       ylab="I-4: Smallest  prop. of c-squares with 90% of effort",xlab="Year")
+       ylab="I-4: Smallest  prop. of area with 90% of total fishing intensity (%)",xlab="Year")
   axis(2,seq(0,100,20),las=1)
   dev.off()
 
@@ -94,6 +94,7 @@
   axis(2,c(0,0.2,0.4,0.6,0.8,1),las=1)
   dev.off()
   
+  impactTextDF <- data.frame()
   if (p %in% regions_with_impact){
 ##### Figure A.5
   load(paste(pathdir_prodFT,"FigureA5.RData",sep="/"))
@@ -104,6 +105,19 @@
   print(grid.arrange(impact_PD,impact_IL, nrow = 1))
   dev.off()
   
+  PD <- figA5[,c(paste0("state_", AssPeriod))]
+  PD$AV <- 1- rowMeans(PD, na.rm=T)
+  PD$imp <- ifelse(PD$AV < 0.2, 1, 0)
+  PDS <- figA5[,c(paste0("state_IL_", AssPeriod))]
+  PDS$AV <- 1 - rowMeans(PDS)
+  PDS$imp <- ifelse(PDS$AV < 0.2, 1, 0)
+  impTextDF1 <- data.frame(ind = c("avPD", "avPDS", "avPDpct", "avPDSpct"),
+                           val = c(round(mean(PD$AV, na.rm=T), digits=2),
+                                   round(mean(PDS$AV, na.rm=T),digits=2),
+                                   paste0(round(sum(PD$imp, na.rm=T)/nrow(PD)*100, digits=0),"%"),
+                                   paste0(round(sum(PDS$imp, na.rm=T)/nrow(PDS)*100, digits=0), "%")))
+  impactTextDF <- rbind(impactTextDF, impTextDF1)
+
 #Figure A.6
   load(paste(pathdir_prodFT,"FigureA6.RData",sep="/"))
   
@@ -113,53 +127,55 @@
   #left panel
   left<-as.data.frame(A6fig[[1]])
   plot((1-left[,1])~left$Year,type="o",col="black",lwd=2, pch=16, yaxt="n",ylim=c(0,1),
-       ylab="Average impact (PD)",xlab="Year")
+       ylab="I-6a: Average impact (PD)",xlab="Year")
   lines((1-left[,2])~left$Year, col="red", type="o", lty=2)
   lines((1-left[,3])~left$Year, col="blue", type="o", lty=3)
   lines((1-left[,4])~left$Year, col="orange", type="o", lty=4)
   lines((1-left[,5])~left$Year, col="black", type="o", lty=5)
-  axis(2,c(0,0.5,1),las=1)
+  axis(2,seq(0,1, 0.2),las=1)
   
   legend(Period[1],1,legend=colnames(left[1:5]),bty = "n",
          col=c("black", "red", "blue","orange","black"), lty=1:5, cex=0.8, x.intersp=0.2,y.intersp = 0.8)
   
   # right panel
   right<-as.data.frame(A6fig[[2]])
-  plot(right[,1]~right$Year,type="o",col="black",lwd=2, pch=16, yaxt="n",ylim=c(0,1),
-       ylab="Prop. of area \n PD impact < 0.2",xlab="Year")
+  right[,1:5] <- right[,1:5]*100
+  plot(right[,1]~right$Year,type="o",col="black",lwd=2, pch=16, yaxt="n",ylim=c(0,100),
+       ylab="I-7a: Prop. of area with \nPD impact < 0.2, \n evaluated at c-square level (%)",xlab="Year")
   lines(right[,2]~right$Year, col="red", type="o", lty=2)
   lines(right[,3]~right$Year, col="blue", type="o", lty=3)
   lines(right[,4]~right$Year, col="orange", type="o", lty=4)
   lines(right[,5]~right$Year, col="black", type="o", lty=5)
-  axis(2,c(0,0.5,1),las=1)
+  axis(2,seq(0,100,20),las=1)
   
   #left panel
   left<-as.data.frame(A6fig[[3]])
   plot((1-left[,1])~left$Year,type="o",col="black",lwd=2, pch=16, yaxt="n",ylim=c(0,1),
-       ylab="Average impact (PD-sens)",xlab="Year")
+       ylab="I-6b: Average impact (PD-sens)",xlab="Year")
   lines((1-left[,2])~left$Year, col="red", type="o", lty=2)
   lines((1-left[,3])~left$Year, col="blue", type="o", lty=3)
   lines((1-left[,4])~left$Year, col="orange", type="o", lty=4)
   lines((1-left[,5])~left$Year, col="black", type="o", lty=5)
-  axis(2,c(0,0.5,1),las=1)
+  axis(2,seq(0,1, 0.2),las=1)
   
   # right panel
   right<-as.data.frame(A6fig[[4]])
-  plot(right[,1]~right$Year,type="o",col="black",lwd=2, pch=16, yaxt="n",ylim=c(0,1),
-       ylab="Prop. of area \n with PD-sens impact < 0.2",xlab="Year")
+  right[,1:5] <- right[,1:5]*100
+  plot(right[,1]~right$Year,type="o",col="black",lwd=2, pch=16, yaxt="n",ylim=c(0,100),
+       ylab="I-7b: Prop. of area with \nPD-sens impact < 0.2, \n evaluated at c-square level (%)",xlab="Year")
   lines(right[,2]~right$Year, col="red", type="o", lty=2)
   lines(right[,3]~right$Year, col="blue", type="o", lty=3)
   lines(right[,4]~right$Year, col="orange", type="o", lty=4)
   lines(right[,5]~right$Year, col="black", type="o", lty=5)
-  axis(2,c(0,0.5,1),las=1)
+  axis(2,seq(0,100,20),las=1)
   
   dev.off()
 
 # Figure A.8
   load(paste(pathdir_prodFT,"FigureA8_A9.RData",sep="/"))
-  
-  gears2 <- c("DRB_MOL","OT_CRU","OT_DMF","OT_MIX","OT_SPF","SDN_DMF","SSC_DMF","TBB_CRU","TBB_DMF","TBB_MOL")
-  gears <- gears2[which(gears2 %in% subset(ActiveMetiers, Activity == "Active")$gears)]
+  load(paste(pathdir_prodFT,"TableA3.RData",sep="/"))
+  gears <- colnames(A3table)
+  rm(A3table)
   if(length(gears)>0){
     nam <- paste("state",rep(gears[1],length(AssPeriod)),AssPeriod,sep="_")
     Avgear <- data.frame(rowMeans(A8_A9fig[, nam]))
@@ -176,11 +192,13 @@
     Avgear <- t(Avgear)
     Avgear_PD <- Avgear
     
+    GearImp <- data.frame(ind = c("maximpmetPD",  "maximpvalPD"),
+                          val = c(colnames(Avgear_PD)[col(Avgear_PD)[Avgear_PD==max(Avgear_PD)]],
+                                  rownames(Avgear_PD)[row(Avgear_PD)[Avgear_PD==max(Avgear_PD)]]))
+    impactTextDF <- rbind(impactTextDF, GearImp)
+    
     # Figure A.8 - PD-sens
     load(paste(pathdir_prodFT,"FigureA8_A9_IL.RData",sep="/"))
-    
-    gears2 <- c("DRB_MOL","OT_CRU","OT_DMF","OT_MIX","OT_SPF","SDN_DMF","SSC_DMF","TBB_CRU","TBB_DMF","TBB_MOL")
-    gears <- gears2[which(gears2 %in% subset(ActiveMetiers, Activity == "Active")$gears)]
     
     nam <- paste("state",rep(gears[1],length(AssPeriod)),AssPeriod,sep="_")
     Avgear <- data.frame(rowMeans(A8_A9fig[, nam]))
@@ -195,23 +213,21 @@
     colnames(Avgear) <- A8_A9fig[,1]
     Avgear <- 1-Avgear # get impact
     Avgear <- t(Avgear)
-    y_max <- round(max(Avgear)+0.02,digits = 3) # get max for y-axis
+    y_max <- round_any(max(Avgear), accuracy=0.05, f=ceiling) # get max for y-axis
     
     png(paste(Assregion,"figureA8.png",sep="_"),width=12,height=9, units = "in", res = 150) 
     par(mfrow=c(2,1),mar=c(4,5,2,2)+0.1)
     
-    b<-barplot(Avgear_PD,beside=T,yaxt="n",xaxt="n",ylab="Impact (PD)",ylim=c(0,y_max), xlab="Metier")
+    b<-barplot(Avgear_PD,beside=T,yaxt="n",xaxt="n",ylab="Impact (PD) (I-6a)",ylim=c(0,y_max), xlab="Métier")
     legend(x=max(b)+1,y_max*0.9, as.character(A8_A9fig$MSFD),
            fill = gray.colors(4),bty = "n", xjust=1)
     axis(1,at=b[3,]-0.5,labels=gears, tick=F) 
-    axis(2,c(0,y_max/2,y_max),las=1)
+    axis(2,pretty(c(0,y_max), n=4),las=1)
     box()
     
-    barplot(Avgear,beside=T,yaxt="n",xaxt="n",ylab="Impact (PD-sens)",ylim=c(0,y_max),xlab="Metier")
-    #legend(30,0.16, as.character(A8_A9fig$MSFD),
-    #       fill = gray.colors(4),bty = "n")
+    barplot(Avgear,beside=T,yaxt="n",xaxt="n",ylab="Impact (PD-sens) (I-6b)",ylim=c(0,y_max),xlab="Métier")
     axis(1,at=b[3,]-0.5,labels=gears, tick=F)
-    axis(2,c(0,y_max/2,y_max),las=1)
+    axis(2,pretty(c(0,y_max), n=4),las=1)
     box()
     
     dev.off()
@@ -219,24 +235,21 @@
     
   } # end if gears>0 loop
   }
-  
+  save(impactTextDF, file="ImpTextDF.Rdata")
 ##########
 # Table A1
   load(paste(pathdir_prodFT,"TableA1.RData",sep="/"))
-  col1 <- c("Average fishing intensity (I-1)", 
-            "Proportion of fished c-squares (I-2)", 
-            "Proportion of area fished (I-3)", 
-            "Smallest  prop. of c-squares with 90% of total fishing intensity (I-4)",
-            "Proportion of persistently unfished c-squares (I-5)", 
-            "Average PD impact (I-6a)",
-            "Average PD-sens impact (I-6b)", 
-            "Proportion of c-squares with PD impact < 0.2 (I-7a)", 
-            "Proportion of c-squares with PD-sens impact < 0.2 (I-7b)")
-  A1table <- round(A1table, digits = 2) 
-  A1table <- A1table[,1:3] # remove the below 800m column. (silenced for now)
+  col1 <- c("I-1: Average fishing intensity", 
+            "I-2: Proportion of area fished, \nevaluated at c-square scale (%)", 
+            "I-3: Proportion of area fished (%)", 
+            "I-4: Smallest proportion of area with 90% of fishing intensity, \nevaluated at c-square scale (%)",
+            "I-5: Proportion of area persistently unfished, \nevaluated at c-square scale (%)", 
+            "I-6a: Average PD impact",
+            "I-6b: Average PD-sens impact", 
+            "I-7a: Proportion of area with PD impact < 0.2, \nevaluated at c-square scale (%)", 
+            "I-7b: Proportion of area with PD-sens impact < 0.2, \nevaluated at c-square scale (%)")
   A1table <- data.frame(Indicators = col1, values = A1table)
-  colnames(A1table) <- c("Indicators","0 to 200 m","200 to 400 m", "400 m to 800 m") 
-  #A1table[A1table=="Inf"] <- NA
+  colnames(A1table) <- c("Indicators","0 to 200 m","200 to 400 m", "400 to 800 m") 
   write.csv(A1table, file= paste(Assregion,"Table_1.csv",sep="_"), row.names=FALSE)
   
 # Table A1SSF
@@ -247,27 +260,14 @@
     QCT <- QCtab[EcoRegion == EcoReg]}
   QCT <- QCT[,c("FAOregion", "FAOname", "Tot_KWFD", "SSFc", "rangeSSF")]
   QCT <- QCT[!duplicated(QCT),]
+  QCT$SSFc <- round(QCT$SSFc, digits=1)
   colnames(QCT) <- c("FAO region code", "FAO region name", "Average annual total fishing effort \n(kW * Fishing days)", "Average contribution of SSF (%)", "Observed contribution range of SSF [min - max%]")
   write.csv(QCT, file= paste(Assregion,"Table_2.csv",sep="_"), row.names=FALSE)
   
 # Table A2
   load(paste(pathdir_prodFT,"TableA2.RData",sep="/"))
-  A2table <- A2table[,c(1:2,11,3:5,7,6,10,8)]
-  
-  colnames(A2table) <- c("MSFD broad habitat type","Extent of habitat (x1000 km^2^)",
-                         "Relative habitat abundance (%)",
-                         "Landings (x1000 tonnes)","Value (x10^6^ euro)",
-                         "Swept area (x1000 km^2^)","Average fishing intensity (I-1)",
-                         "Average annual extent fished (%)", 
-                         "Smallest proportion of extent with 90% of fishing effort", 
-                         "Percentage extent unfished (%)")
-  # colnames(A2table) <- c("MSFD broad habitat type","Extent of habitat (1000 km2)",
-  #                        "Landings 1000 tonnes","Value 10^6^ euro","GVA 10^6^ euro",
-  #                        "Swept area 1000 km2","Average fishing intensity (I-1)",
-  #                        "Prop. of area in fished grid cells (I-2)", "Prop. of area fished per year (I-3)",
-  #                        "Smallest  prop. of area with 90% of fishing effort (I-4)")
-  
-  A2table[,c(2,4:7)] <- round(A2table[,c(2,4:7)], digits = 2)
+  A2table <- A2table[,c("MSFD", "area_km2", "PctHabExt", "avgweight", "avgvalue", "sweptarea", "avgsar",
+                        "propswept", "eff_fish", "propUnfished")]
   
   write.csv(A2table, file= paste(Assregion,"Table_3.csv",sep="_"), row.names=FALSE)
   

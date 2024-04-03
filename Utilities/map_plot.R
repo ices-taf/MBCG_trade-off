@@ -37,13 +37,13 @@
       }
       if (length(year) == 1){
         tr<-filedata[,c(YearNames)]
-        yr <- paste("Fishing intensity \n" ,year[1])
+        yr <- paste("Fishing intensity \n(Swept Area Ratio)\n" ,year[1])
       } else {
         tr<-filedata[,c(YearNames)]
         tr[is.na(tr)]<-0
         tr<-rowMeans(tr[,c(YearNames)])  
         tr[tr==0]<-NA
-        yr <- paste("Fishing intensity \n" ,year[1],"-",year[length(year)])
+        yr <- paste("Fishing intensity \n(Swept Area Ratio)\n" ,year[1],"-",year[length(year)])
       }
      
       quat<-c(-1,0,0.1,0.5,1,5,10,100)
@@ -193,7 +193,7 @@
       colorchoice <- colorchoice[idx]
       
       figmap <- ggplot() + geom_point(data=filedata, aes(x=longitude, y=latitude, colour=factor(cat)),shape=15,size=pointsize,na.rm=T) +
-        scale_colour_manual(values=colorchoice,na.value = "grey50",name  ="Median longevity \n Years",
+        scale_colour_manual(values=colorchoice,na.value = "grey50",name  ="Seabed sensitivity \n(Median longevity) \n(Years)",
                             labels=label_sub)
       figmap <- figmap +  geom_polygon(data = worldMap, aes(x = long, y = lat, group = group),color="dark grey",fill="light grey")
       figmap <- figmap +  theme(plot.background=element_blank(),
