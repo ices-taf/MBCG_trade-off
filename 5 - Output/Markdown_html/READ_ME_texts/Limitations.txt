@@ -1,2 +1,4 @@
-The main advice document describes limitations of the data, analyses and advice. This should be consulted when interpreting the figures and tables in this interactive document.
+Data and analytical limitations are described in the “Limitations” section of the main advice text. This text should be consulted before viewing this interactive document. 
+
+
 

@@ -362,7 +362,7 @@
     }
     
     colnames(A3table) <- gears
-    rownames(A3table) <- c("Area swept (*1000 km^2^)","Landings (*1000 tonnes)","Value (*10^6^ euro)",
+    rownames(A3table) <- c("Area swept (\u00D71000 km^2^)","Landings (\u00D71000 tonnes)","Value (\u00D710^6^ euro)",
                            "Landings / Area swept (kg/km^2^)",
                            "Value / Area swept (euro/km^2^)")
 
@@ -667,9 +667,9 @@
       
       colnames(A4table) <- gears
       rownames(A4table) <- c("Landings (tonnes)/PD impact",
-                             "Value (*1000 euro)/PD impact",
+                             "Value (\u00D71000 euro)/PD impact",
                              "Landings (tonnes)/PD-sens impact",
-                             "Value (*1000 euro)/PD-sens impact")
+                             "Value (\u00D71000 euro)/PD-sens impact")
        save(A4table, file="TableA4.RData")
       
     } # end if gears>0 loop

@@ -10,7 +10,7 @@
 # R libraries
   #library(rgdal) # outdated
   library(plyr)
-  library(dplyr)
+  library(dplyr) # you need to load dplyr after plyr!
   library(rje)
   library(ggplot2)
   library(RColorBrewer)
@@ -24,5 +24,6 @@
   library(tidyr)
   library(mapview)
   library(data.table)
+  library(english)
 
   

@@ -1,5 +1,5 @@
 "FAO region code","FAO region name","Average annual total fishing effort 
-(kW * Fishing days)","Average contribution of SSF (%)","Observed contribution range of SSF [min - max%]"
+(kW × Fishing days)","Average contribution of SSF (%)","Observed contribution range of SSF [min - max%]"
 "27.8.a","Bay of Biscay - North",10411305,23.2,"[21 - 24]"
 "27.8.b","Bay of Biscay - Central",3154504.83,12.3,"[11 - 14]"
 "27.8.c","Bay of Biscay - South",4221423.33,2.7,"[0 - 5]"

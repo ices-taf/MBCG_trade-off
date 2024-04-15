@@ -42,21 +42,21 @@
   ma <- round(max(A3fig[[1]][,1]), digits=1)
   left<-as.data.frame(A3fig[[1]])
   plot(left[,1]~left$Year,type="o",col="black",lwd=2, pch=16, yaxt="n",ylim=c(0,ma+0.5),
-       ylab=expression(plain("I-1: Average fishing intensity (year")^plain("-1")*")"), xlab="Year")
+       ylab=expression(plain("I‒1: Average fishing intensity (year")^plain("-1")*")"), xlab="Year")
   axis(2,las=1)
 
   # middle panel
   middle <- as.data.frame(A3fig[[2]])
   middle[,1] <- middle[,1]* 100
   plot(middle[,1]~middle$Year,type="o",col="black",lwd=2, pch=16, yaxt="n",ylim=c(0,100),
-       ylab="I-3: Proportion of area fished (%)",xlab="Year")
+       ylab="I‒3: Proportion of area fished (%)",xlab="Year")
   axis(2,seq(0,100,20),las=1)
 
   # right panel
   right<-as.data.frame(A3fig[[3]])
   right[,1] <- right[,1]* 100
   plot(right[,1]~right$Year,type="o",col="black",lwd=2, pch=16, yaxt="n",ylim=c(0,100),
-       ylab="I-4: Smallest  prop. of area with 90% of total fishing intensity (%)",xlab="Year")
+       ylab="I‒4: Smallest  prop. of area with 90% of total fishing intensity (%)",xlab="Year")
   axis(2,seq(0,100,20),las=1)
   dev.off()
 
@@ -127,7 +127,7 @@
   #left panel
   left<-as.data.frame(A6fig[[1]])
   plot((1-left[,1])~left$Year,type="o",col="black",lwd=2, pch=16, yaxt="n",ylim=c(0,1),
-       ylab="I-6a: Average impact (PD)",xlab="Year")
+       ylab="I‒6a: Average impact (PD)",xlab="Year")
   lines((1-left[,2])~left$Year, col="red", type="o", lty=2)
   lines((1-left[,3])~left$Year, col="blue", type="o", lty=3)
   lines((1-left[,4])~left$Year, col="orange", type="o", lty=4)
@@ -141,7 +141,7 @@
   right<-as.data.frame(A6fig[[2]])
   right[,1:5] <- right[,1:5]*100
   plot(right[,1]~right$Year,type="o",col="black",lwd=2, pch=16, yaxt="n",ylim=c(0,100),
-       ylab="I-7a: Prop. of area with \nPD impact < 0.2, \n evaluated at c-square level (%)",xlab="Year")
+       ylab="I‒7a: Prop. of area with PD impact < 0.2,\nevaluated at c-square scale (%)",xlab="Year")
   lines(right[,2]~right$Year, col="red", type="o", lty=2)
   lines(right[,3]~right$Year, col="blue", type="o", lty=3)
   lines(right[,4]~right$Year, col="orange", type="o", lty=4)
@@ -151,7 +151,7 @@
   #left panel
   left<-as.data.frame(A6fig[[3]])
   plot((1-left[,1])~left$Year,type="o",col="black",lwd=2, pch=16, yaxt="n",ylim=c(0,1),
-       ylab="I-6b: Average impact (PD-sens)",xlab="Year")
+       ylab="I‒6b: Average impact (PD-sens)",xlab="Year")
   lines((1-left[,2])~left$Year, col="red", type="o", lty=2)
   lines((1-left[,3])~left$Year, col="blue", type="o", lty=3)
   lines((1-left[,4])~left$Year, col="orange", type="o", lty=4)
@@ -162,7 +162,7 @@
   right<-as.data.frame(A6fig[[4]])
   right[,1:5] <- right[,1:5]*100
   plot(right[,1]~right$Year,type="o",col="black",lwd=2, pch=16, yaxt="n",ylim=c(0,100),
-       ylab="I-7b: Prop. of area with \nPD-sens impact < 0.2, \n evaluated at c-square level (%)",xlab="Year")
+       ylab="I‒7b: Prop. of area with PD-sens impact < 0.2,\nevaluated at c-square scale (%)",xlab="Year")
   lines(right[,2]~right$Year, col="red", type="o", lty=2)
   lines(right[,3]~right$Year, col="blue", type="o", lty=3)
   lines(right[,4]~right$Year, col="orange", type="o", lty=4)
@@ -218,14 +218,14 @@
     png(paste(Assregion,"figureA8.png",sep="_"),width=12,height=9, units = "in", res = 150) 
     par(mfrow=c(2,1),mar=c(4,5,2,2)+0.1)
     
-    b<-barplot(Avgear_PD,beside=T,yaxt="n",xaxt="n",ylab="Impact (PD) (I-6a)",ylim=c(0,y_max), xlab="Métier")
+    b<-barplot(Avgear_PD,beside=T,yaxt="n",xaxt="n",ylab="Impact (PD) (I‒6a)",ylim=c(0,y_max), xlab="Métier")
     legend(x=max(b)+1,y_max*0.9, as.character(A8_A9fig$MSFD),
            fill = gray.colors(4),bty = "n", xjust=1)
     axis(1,at=b[3,]-0.5,labels=gears, tick=F) 
     axis(2,pretty(c(0,y_max), n=4),las=1)
     box()
     
-    barplot(Avgear,beside=T,yaxt="n",xaxt="n",ylab="Impact (PD-sens) (I-6b)",ylim=c(0,y_max),xlab="Métier")
+    barplot(Avgear,beside=T,yaxt="n",xaxt="n",ylab="Impact (PD-sens) (I‒6b)",ylim=c(0,y_max),xlab="Métier")
     axis(1,at=b[3,]-0.5,labels=gears, tick=F)
     axis(2,pretty(c(0,y_max), n=4),las=1)
     box()
@@ -239,15 +239,15 @@
 ##########
 # Table A1
   load(paste(pathdir_prodFT,"TableA1.RData",sep="/"))
-  col1 <- c("I-1: Average fishing intensity", 
-            "I-2: Proportion of area fished, \nevaluated at c-square scale (%)", 
-            "I-3: Proportion of area fished (%)", 
-            "I-4: Smallest proportion of area with 90% of fishing intensity, \nevaluated at c-square scale (%)",
-            "I-5: Proportion of area persistently unfished, \nevaluated at c-square scale (%)", 
-            "I-6a: Average PD impact",
-            "I-6b: Average PD-sens impact", 
-            "I-7a: Proportion of area with PD impact < 0.2, \nevaluated at c-square scale (%)", 
-            "I-7b: Proportion of area with PD-sens impact < 0.2, \nevaluated at c-square scale (%)")
+  col1 <- c("I‒1: Average fishing intensity", 
+            "I‒2: Proportion of area fished, \nevaluated at c-square scale (%)", 
+            "I‒3: Proportion of area fished (%)", 
+            "I‒4: Smallest proportion of area with 90% of fishing intensity, \nevaluated at c-square scale (%)",
+            "I‒5: Proportion of area persistently unfished, \nevaluated at c-square scale (%)", 
+            "I‒6a: Average PD impact",
+            "I‒6b: Average PD-sens impact", 
+            "I‒7a: Proportion of area with PD impact < 0.2, \nevaluated at c-square scale (%)", 
+            "I‒7b: Proportion of area with PD-sens impact < 0.2, \nevaluated at c-square scale (%)")
   A1table <- data.frame(Indicators = col1, values = A1table)
   colnames(A1table) <- c("Indicators","0 to 200 m","200 to 400 m", "400 to 800 m") 
   write.csv(A1table, file= paste(Assregion,"Table_1.csv",sep="_"), row.names=FALSE)
@@ -261,7 +261,7 @@
   QCT <- QCT[,c("FAOregion", "FAOname", "Tot_KWFD", "SSFc", "rangeSSF")]
   QCT <- QCT[!duplicated(QCT),]
   QCT$SSFc <- round(QCT$SSFc, digits=1)
-  colnames(QCT) <- c("FAO region code", "FAO region name", "Average annual total fishing effort \n(kW * Fishing days)", "Average contribution of SSF (%)", "Observed contribution range of SSF [min - max%]")
+  colnames(QCT) <- c("FAO region code", "FAO region name", "Average annual total fishing effort \n(kW \u00D7 Fishing days)", "Average contribution of SSF (%)", "Observed contribution range of SSF [min - max%]")
   write.csv(QCT, file= paste(Assregion,"Table_2.csv",sep="_"), row.names=FALSE)
   
 # Table A2

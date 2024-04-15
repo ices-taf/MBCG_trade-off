@@ -36,7 +36,7 @@ metiers <- unique(vmsValueLong$wktradeMet)
 #Total
 VMS_MBCG_sum <- vmsValueLong %>% 
   group_by(year, csquares, wktradeMet) %>% 
-  summarise(euro_sum=sum(euro)) 
+  dplyr::summarise(euro_sum=sum(euro)) 
 
 #Sort and make cumulated percentage
 VMS_MBCG_sum2 <- VMS_MBCG_sum %>% 
@@ -51,12 +51,12 @@ VMS_MBCG_90pct <- VMS_MBCG_90pct[!is.na(VMS_MBCG_90pct$wktradeMet),]
 #Sum number of years>90% by metier and c-square
 VMS_MBCG_90pct2 <- VMS_MBCG_90pct %>% 
   group_by( wktradeMet, csquares) %>% 
-  summarise(n_years=sum(t)) 
+  dplyr::summarise(n_years=sum(t)) 
 
 VMS_MBCG_90pct2$t <- 1
 VMS_MBCG_90pct2 <- VMS_MBCG_90pct2 %>% 
   group_by( wktradeMet, n_years) %>% 
-  summarise(n_csquares=sum(t)) 
+  dplyr::summarise(n_csquares=sum(t)) 
 
 # Determine number of csquares fished, but no core fishing ground, per metier. Add to VMS_MBCG_90pct2
 VMS_MBCG_sum3 <- data.table(VMS_MBCG_sum2) # all fished grid cells
@@ -70,12 +70,12 @@ VMS_MBCG_90pct2 <- rbind(VMS_MBCG_90pct2, VMS_MBCG_sum3)
 #Determine number of csquares as fishing ground per metier
 VMS_MBCG_90pct2_tot <- VMS_MBCG_90pct2 %>% 
   group_by( wktradeMet) %>% 
-  summarise(n_csquares_tot=sum(n_csquares)) 
+  dplyr::summarise(n_csquares_tot=sum(n_csquares)) 
 
 VMS_MBCG_90pct2_totCF <- VMS_MBCG_90pct2 %>% 
   filter(n_years > 0) %>%
   group_by( wktradeMet) %>% 
-  summarise(n_csquares_CF=sum(n_csquares))
+  dplyr::summarise(n_csquares_CF=sum(n_csquares))
 
 VMS_MBCG_90pct2 <- merge(VMS_MBCG_90pct2,VMS_MBCG_90pct2_tot, by=c("wktradeMet"))
 VMS_MBCG_90pct2 <- merge(VMS_MBCG_90pct2,VMS_MBCG_90pct2_totCF, by=c("wktradeMet"))
@@ -128,7 +128,7 @@ VMS_MBCG_90pct$Latitude=CSquare2LonLat(as.character(VMS_MBCG_90pct$csquares),0.0
 MBCG_90pct_poly <- 
   VMS_MBCG_90pct %>% 
   group_by(wktradeMet, csquares, Longitude, Latitude) %>% 
-  summarise(n_years=sum(t), euro_sum=sum(euro_sum))  %>%
+  dplyr::summarise(n_years=sum(t), euro_sum=sum(euro_sum))  %>%
   mutate(
     wkt = paste0('POLYGON((',
                  Longitude + 0.025, ' ', Latitude + 0.025, ', ',
@@ -146,7 +146,7 @@ VMS_MBCG_sum$Latitude=CSquare2LonLat(as.character(VMS_MBCG_sum$csquares),0.05)$S
 MBCG_total_poly <- 
   VMS_MBCG_sum %>% 
   group_by(wktradeMet,csquares, Longitude, Latitude) %>% 
-  summarise(euro_sum=sum(euro_sum))  %>%
+  dplyr::summarise(euro_sum=sum(euro_sum))  %>%
   mutate(
     wkt = paste0('POLYGON((',
                  Longitude + 0.025, ' ', Latitude + 0.025, ', ',

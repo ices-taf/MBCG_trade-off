@@ -1,15 +1,15 @@
 "Indicators","0 to 200 m","200 to 400 m","400 to 800 m"
-"I-1: Average fishing intensity","0.5","NP","NP"
-"I-2: Proportion of area fished, 
+"I‒1: Average fishing intensity","0.5","NP","NP"
+"I‒2: Proportion of area fished, 
 evaluated at c-square scale (%)","70.5","NP","NP"
-"I-3: Proportion of area fished (%)","28.3","NP","NP"
-"I-4: Smallest proportion of area with 90% of fishing intensity, 
+"I‒3: Proportion of area fished (%)","28.3","NP","NP"
+"I‒4: Smallest proportion of area with 90% of fishing intensity, 
 evaluated at c-square scale (%)","25.6","NP","NP"
-"I-5: Proportion of area persistently unfished, 
+"I‒5: Proportion of area persistently unfished, 
 evaluated at c-square scale (%)","29.5","NP","NP"
-"I-6a: Average PD impact","1","NP","NP"
-"I-6b: Average PD-sens impact","1.5","NP","NP"
-"I-7a: Proportion of area with PD impact < 0.2, 
+"I‒6a: Average PD impact","1","NP","NP"
+"I‒6b: Average PD-sens impact","1.5","NP","NP"
+"I‒7a: Proportion of area with PD impact < 0.2, 
 evaluated at c-square scale (%)","99.8","NP","NP"
-"I-7b: Proportion of area with PD-sens impact < 0.2, 
+"I‒7b: Proportion of area with PD-sens impact < 0.2, 
 evaluated at c-square scale (%)","99.5","NP","NP"

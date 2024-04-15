@@ -45,6 +45,8 @@ library(dplyr)
 library(kableExtra)
 library(knitr)
 library(readtext)
+library(english)
+library(stringr)
 
 reg_dat <- c("Baltic Sea" ,"Bothnian_BS", "GulfF_BS", "GulfR_BS" ,"Proper_BS","ArkBor_BS","Western_BS" )
 name_dat <- c("Baltic Sea","Bothnian area","Gulf of Finland", "Gulf of Riga","Baltic Proper" ,"Arkona & Bornholm Basin","Western Baltic Sea"  )
@@ -140,7 +142,7 @@ Readme$text <- gsub("ECOREG", ecoreg, Readme$text)
 hab <- read.table(paste(outtext,"Indicator_table.txt",sep=''),sep="\t", header=T)
 nam <-  gsub("[.]", " ", names(hab))
 
-kable(hab, col.names = nam, caption="<p style='color: black'><strong>Table E1. Pressure and impact indicators that are applied by (sub-)region and subdivision area, including the spatial scale and period over which the indicators are calculated. C-square refers to a grid cell of dimensions 0.05° latitude * 0.05° longitude.</strong></p>",format = "html", table.attr = "style='width:100%;'", align='l') %>% 
+kable(hab, col.names = nam, caption="<p style='color: black'><strong>Table E1. Pressure and impact indicators, including the spatial scale and period for which indicators are evaluated. C-square refers to a grid cell of dimensions 0.05° latitude \u00D7 0.05° longitude. Examples of the “defined area” referred to in the description would be an area within a specified depth range or an area with the same BHT.</strong></p>",format = "html", table.attr = "style='width:100%;'", align='l') %>% 
   kable_styling(font_size=12, bootstrap_options = c("hover"))%>%
   footnote(general = "", general_title = "", footnote_as_chunk = T)
 ```

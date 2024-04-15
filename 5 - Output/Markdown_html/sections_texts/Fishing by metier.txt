@@ -1,2 +1,4 @@
 Relationships between swept area and the landings weight and landings value of the métiers show the landings and economic returns as a function of swept area (Table 4). The most active métier within the ECOREG area is T4maxSAmet. This métier lands T4maxSAkg kg of fish with a value of T4maxSAval per km^2^ swept area. 
-The métier with the highest landing per swept area is T4maxSAKGmet, and the métier with the highest economic return per swept area is T4maxSAVALmet.
+
+The métier with the highest landing per swept area is T4maxSAKGmet, and the métier with the highest economic return per swept area is T4maxSAVALmet. 
+
