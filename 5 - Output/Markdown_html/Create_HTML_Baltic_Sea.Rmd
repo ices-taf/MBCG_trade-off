@@ -4,14 +4,13 @@ author: "ICES 2024"
 output: html_document
 ---
 
+<!--<div class="watermark">DRAFT</div>>-->
+
 ```{r, echo=FALSE}
 htmltools::img(src = knitr::image_uri("D:/MBCG_trade-off/5 - Output/Markdown_html/ICES_logo.png"), 
                alt = 'logo', 
                style = 'position:absolute; top:15px; right:27%; padding:10px; height:80px')
 ```
-
-<div class="watermark">DRAFT</div>
-
 
 ```{=html}
 <style type="text/css">
