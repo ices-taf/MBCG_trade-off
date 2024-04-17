@@ -1,7 +1,7 @@
 ## ReadMe
 
 This repository stores all the scripts needed to perform the EU-requested spatial trade-off analysis between reducing the extent of mobile bottom-contacting gear (MBCG) disturbance to sea-floor habitats and potential costs to fisheries.
-The official ICES Advice comprises a main advice document (PDF) and interactive documents (4 HTMLs), and can be found [here] (https://ices-library.figshare.com/articles/report/EU_request_on_spatial_trade-off_analysis_between_reducing_the_extent_of_mobile_bottom-contacting_gear_MBCG_disturbance_to_seabed_habitats_and_potential_costs_to_fisheries/25601121).
+The official ICES Advice comprises a main advice document (PDF) and interactive documents (4 HTMLs), and can be found here: https://doi.org/10.17895/ices.advice.25601121.v1.
 
 # Input data
 The assessment requires several input datasets, from various sources:
