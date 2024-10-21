@@ -21,7 +21,7 @@ for(iHab in 1:5){
       scale_color_manual(values=c("black", "darkorange", "blue", "red"), name=paste0("Broad habitat type:\n", habs[iHab], "\n\n\nAssumed reduction in depletion \nfrom gear modification (%)"), labels=c("0", "5", "10", "20")) +
       theme_classic()+
       labs(x="Habitat quality (1 - impact)",
-           y= "Haibtat extent (%)") +
+           y= "Habitat extent (%)") +
       facet_grid(.~Indicator) +
       theme(panel.spacing = unit(3, "lines"), legend.text = element_text(size=10), legend.title = element_text(size=12),
             strip.text = element_text(size=14), axis.text = element_text(size=10), axis.title=element_text(size=12),
@@ -35,7 +35,7 @@ for(iHab in 1:5){
       scale_color_manual(values=c("black", "darkorange", "blue", "red"), name=paste0("Broad habitat type:\n", habs[iHab], "\n\n\nAssumed reduction in depletion \nfrom gear modification (%)"), labels=c("0", "5", "10", "20")) +
       theme_classic()+
       labs(x="Habitat quality (1 - impact)",
-           y= "Haibtat extent (%)") +
+           y= "Habitat extent (%)") +
       facet_grid(.~Indicator) +
       theme(panel.spacing = unit(3, "lines"), legend.text = element_text(size=10), legend.title = element_text(size=12),
             strip.text = element_text(size=14), axis.text = element_text(size=10), axis.title=element_text(size=12),
